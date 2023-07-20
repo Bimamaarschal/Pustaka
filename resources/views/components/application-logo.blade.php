@@ -1,0 +1,1 @@
+<img src="{{ url('image/logo2.png') }}" style="width: 18%; float: right;"/>
