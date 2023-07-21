@@ -14,20 +14,24 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Resources\TulisblogResource;
+use Illuminate\Support\Facades\Storage;
 
 class TulisblogController extends Controller
 {
-    /**
+
+       /**
      * Tampilan API
      *
      * @return void
      */
     public function index(): View
     {
-        //get all posts
-        $tulisblogs = Tulisblog::latest()->paginate(5);
-        $tulisblogs = new TulisblogResource(true, 'List Data Tulisan Blog Anda', $tulisblogs);
-        return Redirect::route('pustaka')->with('tulisblogs', $tulisblogs);
+        $tulisblogs = Tulisblog::latest()->paginate(6);
+        $itemsPerPage = 6;
+        $tulisblogs = Tulisblog::paginate($itemsPerPage);
+        $tulisblogResource = new TulisblogResource(true, 'List Data Tulisan Blog Anda', $tulisblogs);
+        return view('tulisblogs.index', compact('tulisblogs', 'tulisblogResource'));
+
     }
 
 
@@ -92,9 +96,31 @@ class TulisblogController extends Controller
      */
     public function show(string $id): View
     {
-        $tulisblog = Tulisblog::findOrFail($id);
-        return view('tulisblogs.show', compact('tulisblog'));
+        $tulisblogs = Tulisblog::findOrFail($id);
+        return view('tulisblogs.show', compact('tulisblogs'));
 
+    }
+
+
+    /**
+     * destroy
+     *
+     * @param  mixed $tulisblogs
+     * @return void
+     */
+    public function destroy($id): RedirectResponse
+    {
+        //get post by ID
+        $tulisblog = Tulisblog::findOrFail($id);
+
+        //delete image
+        Storage::delete('public/tulisblogs/'.basename($tulisblog->image));
+
+        //delete post
+        $tulisblog->delete();
+
+        //redirect to index
+        return redirect()->route('tulisblogs.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
     
 
