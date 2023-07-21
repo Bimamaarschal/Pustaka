@@ -2,20 +2,23 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{ route('tulisblogs.index') }}" class="text-red-500">
-    {{ __('Blog') }}
-</a> / {{ __('Baca Blog') }} / {{ __($tulisblogs->judul) }}
+                <a href="{{ route('tulisblogs.index') }}" class="text-red-500">
+                    {{ __('Blog') }}
+                </a> / {{ __('Baca Blog') }} / {{ __($tulisblogs->judul) }}
             </h2>
             @if(auth()->check() && $tulisblogs->penulis == auth()->user()->name)
             <div class="flex">
                 <form action="{{ route('tulisblogs.destroy', $tulisblogs->id) }}" method="POST"
-                    onsubmit="return confirm('Karena anda pemiliki tulisan Blog ini maka fitur hapus ini di tambahkan, apakah Anda yakin ingin menghapus data ini?');">
+                    onsubmit="return confirm('Karena Anda pemilik tulisan Blog ini maka fitur hapus ini ditambahkan, apakah Anda yakin ingin menghapus data ini?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
                         Hapus
                     </button>
                 </form>
+
+                <a href="{{ route('tulisblogs.edit', $tulisblogs->id) }}"
+                    class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded ml-2">Edit</a>
             </div>
             @endif
         </div>
@@ -25,12 +28,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-ml sm:rounded-lg">
 
-            <div class="flex items-center">
-    <img src="{{ asset($tulisblogs->image) }}" alt="image"
-        class=" object-cover object-center mr-4" style="width: 450px; height: 250px; " />
+                <div class="flex items-center">
+                    <img src="{{ asset($tulisblogs->image) }}" alt="image" class=" object-cover object-center mr-4"
+                        style="width: 450px; height: 250px; " />
 
-    <div  class=" ml-5  mr-5 ">
-        <span class="
+                    <div class=" ml-5  mr-5 ">
+                        <span class="
             bg-red-600
             rounded
             inline-block
@@ -43,10 +46,10 @@
             text-white
             mb-2
         ">
-            {{ $tulisblogs->tanggal }}
-        </span>
-        <h3>
-            <a href="blog-details.html" class="
+                            {{ $tulisblogs->tanggal }}
+                        </span>
+                        <h3>
+                            <a href="blog-details.html" class="
                 font-semibold
                 text-xl
                 sm:text-2xl
@@ -57,17 +60,17 @@
                 text-dark
                 hover:text-primary
             ">
-                {{ $tulisblogs->judul }}
-            </a>
-        </h3>
-        <p class="text-base pb-2 text-body-color">
-            {{ $tulisblogs->konten1 }}
-        </p>
-        <p class="text-base text-body-color">
-            Penulis: {{ $tulisblogs->penulis }}
-        </p>
-    </div>
-</div>
+                                {{ $tulisblogs->judul }}
+                            </a>
+                        </h3>
+                        <p class="text-base pb-2 text-body-color">
+                            {{ $tulisblogs->konten1 }}
+                        </p>
+                        <p class="text-base text-body-color">
+                            Penulis: {{ $tulisblogs->penulis }}
+                        </p>
+                    </div>
+                </div>
 
 
             </div>

@@ -4,7 +4,7 @@
         Blog di mulai dari sini
         <h1>
             <form action="{{ route('tulisblogs.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+                @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div class="mb-6">
                         <label class="text-gray-500"> Nama Penulis (Ini tidak dapat di ubah) <br></label>
@@ -47,6 +47,7 @@
                       transition
                     " name="tanggal" />
                     </div>
+
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="mb-6">
@@ -66,6 +67,9 @@
                       focus:ring-red-500
                       transition
                     " name="judul" />
+                        @error('judul')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <div class="col-span-12 mb-2">
@@ -75,7 +79,9 @@
                 file:rounded-md file:border-0
                 file:text-sm file:font-semibold
                 file:bg-red-500 file:text-white
-                " />
+                " />@error('image')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -96,6 +102,9 @@
                       focus:ring-red-500
                       transition
                     " />
+                    @error('konten1')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-6">
                     <textarea name="konten2" placeholder="BLOG TULIS" class="
@@ -114,7 +123,7 @@
                       focus:border-red-500
                       focus:ring-red-500
                       transition
-                    "  rows="5"></textarea>
+                    " rows="5"></textarea>
                 </div>
                 <button type="submit"
                     class="float-right inline-block rounded bg-red-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
