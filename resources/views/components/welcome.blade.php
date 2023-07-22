@@ -3,7 +3,7 @@
     <x-application-logo class="block h-12 w-auto" />
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900">
-        Selamat Datang di Pustaka {{ Auth::user()->name }}
+        Selamat datang, {{ Auth::user()->name }} di Pustaka 
     </h1>
     <p class="mt-6 md:text-[15px] text-justify text-gray-500 leading-relaxed">
         Tempat yang tepat untuk menjelajahi dunia tulisan karya ilmiah. Di sini, Anda akan menemukan repositori <br>
@@ -130,12 +130,8 @@
 
 
 <!-- Tampilan Bawah -->
-<div class="p-12 lg:p-8 bg-white border-b border-gray-200">
-    <p class="mt-6 pb-20 md:text-[15px] text-gray-400 leading-relaxed">
-        *Jika Anda memiliki pertanyaan, saran, atau ingin berkontribusi dengan tulisan ilmiah Anda sendiri, jangan ragu
-        untuk menghubungi kami melalui formulir kontak.
-    </p>
-    <p class="text-center font-bold md:text-[15px] text-gray-500 leading-relaxed">
+<div class="p-12 lg:p-8 bg-red-500 border-b border-gray-200">
+    <p class="text-center font-bold md:text-[15px] text-white leading-relaxed">
         PUSTAKA oleh Bima Maarschal
     </p>
 </div>

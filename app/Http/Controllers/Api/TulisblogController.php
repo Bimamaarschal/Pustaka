@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Tulisblog;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TulisblogResource;
+use App\Models\LikeHistory;
+use App\Models\Tulisblog;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Resources\TulisblogResource;
-use Illuminate\Support\Facades\Storage;
 
 class TulisblogController extends Controller
 {
@@ -70,10 +71,8 @@ class TulisblogController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
         $image = $request->file('image');
         $image->storeAs('public/tulisblogs', $image->hashName());
-
         $tulisblog = Tulisblog::create([
             'image' => $image->hashName(),
             'judul' => $request->judul,
@@ -82,7 +81,6 @@ class TulisblogController extends Controller
             'konten1' => $request->konten1,
             'konten2' => $request->konten2,
         ]);
-
         $tulisblog = new TulisblogResource(true, 'Data Tulisan Blog Anda Berhasil Ditambahkan!', $tulisblog);
         return Redirect::route('tulisblogs.index')->with('tulisblog', $tulisblog);
     }
@@ -96,6 +94,7 @@ class TulisblogController extends Controller
     public function show(string $id): View
     {
         $tulisblogs = Tulisblog::findOrFail($id);
+        $tulisblogs->increment('view_count');
         return view('tulisblogs.show', compact('tulisblogs'));
     }
 
@@ -157,6 +156,37 @@ class TulisblogController extends Controller
         return redirect()->route('tulisblogs.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
+    public function hasLiked($blogId)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return false;
+        }
+        return $user->likeHistory()->where('blog_id', $blogId)->exists();
+    }
+
+    public function like($id)
+    {
+        $tulisblog = Tulisblog::find($id);
+
+        if ($tulisblog) {
+            $user = auth()->user();
+            
+            if ($tulisblog->hasLiked($user->id)) {
+                $tulisblog->decrement('like_count');
+                $tulisblog->likeHistory()->where('user_id', $user->id)->delete();
+            } else {
+                $tulisblog->increment('like_count');
+                LikeHistory::create([
+                    'user_id' => $user->id,
+                    'blog_id' => $tulisblog->id,
+                ]);
+            }
+        }
+
+        return redirect()->back();
+    }
+
     /**
      * Fungsi Hapus Data
      *
@@ -170,6 +200,4 @@ class TulisblogController extends Controller
         $tulisblog->delete();
         return redirect()->route('tulisblogs.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
-
-
 }

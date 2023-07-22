@@ -47,5 +47,11 @@ Route::middleware([
     })->name('api');
 })->group(function () {
     Route::resource('/tulisblogs', \App\Http\Controllers\Api\TulisblogController::class);
+})->group(function () {
+    Route::post('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.like');
+})->group(function () {
+    Route::delete('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.unlike');
+})->group(function () {
+    Route::resource('/jurnals', \App\Http\Controllers\JurnalController::class);
 })
 ;
