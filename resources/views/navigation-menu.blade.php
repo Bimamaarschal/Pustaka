@@ -17,9 +17,10 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link href="{{ route('pustaka') }}" :active="request()->routeIs('pustaka', 'tulisblogs.index', 'tulisblogs.show*')">
-    {{ __('Pustaka') }}
-</x-nav-link>
+                    <x-nav-link href="{{ route('pustaka') }}"
+                        :active="request()->routeIs('pustaka', 'tulisblogs.index', 'tulisblogs.show*')">
+                        {{ __('Pustaka') }}
+                    </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('tulis') }}" :active="request()->routeIs('tulis')">
@@ -52,7 +53,7 @@
                             <span class="inline-flex rounded-md">
                                 <button type="button"
                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                    {{ Auth::user()->currentTeam->name }}
+                                    {{ __(' Fitur Akun') }}
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -65,19 +66,35 @@
 
                         <x-slot name="content">
                             <div class="w-60">
+                                <!-- Pilihan "Review" jika pengguna memiliki status "viewer" -->
+                                @if (Auth::user()->status_tim_viewer)
+                                <!-- Ganti "status_viewer" sesuai dengan atribut status viewer di tabel Users -->
+                                <div class="border-t border-gray-200"></div>
+
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('Review Dokumen') }}
+                                </div>
+
+                                <!-- Tambahkan link atau konten lain untuk pilihan "Review" -->
+                                <!-- Misalnya, jika Anda ingin menambahkan link review -->
+                                <x-dropdown-link href="{{ route('jurnals.timreview') }}">
+                                    {{ __('Review') }}
+                                </x-dropdown-link>
+
+                                @endif
                                 <!-- Team Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Team') }}
+                                    {{ __('Tim') }}
                                 </div>
 
                                 <!-- Team Settings -->
                                 <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                    {{ __('Team Settings') }}
+                                    {{ __('Pengaturan Tim') }}
                                 </x-dropdown-link>
 
                                 @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                 <x-dropdown-link href="{{ route('teams.create') }}">
-                                    {{ __('Create New Team') }}
+                                    {{ __('Buat Tim Baru') }}
                                 </x-dropdown-link>
                                 @endcan
 
@@ -86,15 +103,18 @@
                                 <div class="border-t border-gray-200"></div>
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Switch Teams') }}
+                                    {{ __('Ganti Tim') }}
                                 </div>
 
                                 @foreach (Auth::user()->allTeams() as $team)
                                 <x-switchable-team :team="$team" />
                                 @endforeach
                                 @endif
+
+
                             </div>
                         </x-slot>
+
                     </x-dropdown>
                 </div>
                 @endif
@@ -128,16 +148,16 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Akun') }}
                             </div>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Profil Akun') }}
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-dropdown-link href="{{ route('api-tokens.index') }}">
-                                {{ __('API Tokens') }}
+                                {{ __('API') }}
                             </x-dropdown-link>
                             @endif
 
@@ -148,7 +168,7 @@
                                 @csrf
 
                                 <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Keluar') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>

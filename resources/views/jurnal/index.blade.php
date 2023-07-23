@@ -13,23 +13,22 @@
                         <div class="flex flex-wrap -mx-4">
                             <div class="w-full px-4">
                                 <div class="mb-12 lg:mb-15">
-                                <div class="pb-10" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1 class="text-2xl font-medium text-dark-500" style="flex-grow: 1;">
-        Pilihan Tema Jurnal
-    </h1>
-    <button class="bg-red-500 mb-15 text-white px-6 py-2 rounded">Ajukan Jurnal Baru</button>
-</div>
-
-
-
+                                    <div class="pb-10"
+                                        style="display: flex; justify-content: space-between; align-items: center;">
+                                        <h1 class="text-2xl font-medium text-dark-500" style="flex-grow: 1;">
+                                            Pilihan Tema Jurnal
+                                        </h1>
+                                        <a href="{{ route('jurnals.create')}}"
+                                            class="bg-red-500 mb-15 text-white px-6 py-2 rounded">Ajukan Jurnal Baru</a>
+                                    </div>
                                     <p class="
-                  text-lg
-                  sm:text-xl
-                  leading-relaxed
-                  md:text-[15px]
-                  sm:leading-relaxed
-                  text-dark-500
-                ">
+                                                text-lg
+                                                sm:text-xl
+                                                leading-relaxed
+                                                md:text-[15px]
+                                                sm:leading-relaxed
+                                                text-dark-500
+                                                ">
                                         Selamat datang di PUSTAKA Jurnal, Nikmati fitur jurnal
                                         yang menyediakan akses mudah ke ribuan jurnal terkini dari berbagai bidang ilmu.
                                         Baca jurnal online dari kenyamanan rumah Anda dan berkontribusi dengan

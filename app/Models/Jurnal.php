@@ -26,5 +26,10 @@ class Jurnal extends Model
         'view_count',
         'like_count',
         'like_status',
+        'pdf',
+        'statusreview',
+        'keterangan_review',
+        'tanggal_review',
+        'nama_review',
     ];
 }

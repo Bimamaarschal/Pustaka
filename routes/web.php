@@ -25,33 +25,41 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-})->group(function () {
+
     Route::get('/pustaka', function () {
         return view('pustaka');
     })->name('pustaka');
-})->group(function () {
+
     Route::get('/tulis', function () {
         return view('tulis');
     })->name('tulis');
-})->group(function () {
+
     Route::get('/buku', function () {
         return view('buku');
     })->name('buku');
-})->group(function () {
+
     Route::get('/jurnal', function () {
         return view('jurnal');
     })->name('jurnal');
-})->group(function () {
+
     Route::get('/api', function () {
         return view('api');
     })->name('api');
-})->group(function () {
+
     Route::resource('/tulisblogs', \App\Http\Controllers\Api\TulisblogController::class);
-})->group(function () {
+
     Route::post('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.like');
-})->group(function () {
+
     Route::delete('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.unlike');
-})->group(function () {
+
     Route::resource('/jurnals', \App\Http\Controllers\JurnalController::class);
-})
-;
+
+    Route::get('/jurnals/review/{id}', '\App\Http\Controllers\JurnalController@review')->name('jurnals.review');
+
+    Route::get('/jurnals/tim/review', '\App\Http\Controllers\JurnalController@timreview')->name('jurnals.timreview');
+
+    Route::get('/jurnals/belum/review', '\App\Http\Controllers\JurnalController@belumreview')->name('jurnals.belumreview');
+    Route::get('/jurnals/belum/review/{id}', '\App\Http\Controllers\JurnalController@belumreview2')->name('jurnals.belumreview2');
+    Route::put('jurnals/belum/hasilreview/{id}', '\App\Http\Controllers\JurnalController@storebelumreview2')->name('jurnals.storebelumreview2');
+});
+
