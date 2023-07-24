@@ -16,11 +16,6 @@ use Illuminate\View\View;
 class TulisblogController extends Controller
 {
 
-    /**
-     * Tampilan Index
-     *
-     * @return void
-     */
     public function index(): View
     {
         $tulisblogs = Tulisblog::latest()->paginate(6);
@@ -31,22 +26,11 @@ class TulisblogController extends Controller
 
     }
 
-    /**
-     * Ke Tampilan Tambah Data
-     *
-     * @return View
-     */
     public function create(): View
     {
         return view('tulisblogs.create');
     }
 
-    /**
-     * Fungsi Tambah Data
-     *
-     * @param  mixed $request
-     * @return void
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -85,12 +69,6 @@ class TulisblogController extends Controller
         return Redirect::route('tulisblogs.index')->with('tulisblog', $tulisblog);
     }
 
-    /**
-     * Fungsi Panggil Data
-     *
-     * @param  mixed $tulisblog
-     * @return void
-     */
     public function show(string $id): View
     {
         $tulisblogs = Tulisblog::findOrFail($id);
@@ -98,25 +76,13 @@ class TulisblogController extends Controller
         return view('tulisblogs.show', compact('tulisblogs'));
     }
 
-    /**
-     * Ke Tampilan Edit Data
-     *
-     * @param  mixed $id
-     * @return View
-     */
+
     public function edit(string $id): View
     {
         $tulisblog = Tulisblog::findOrFail($id);
         return view('tulisblogs.edit', compact('tulisblog'));
     }
 
-    /**
-     * Fungsi Edit Data
-     *
-     * @param  mixed $request
-     * @param  mixed $id
-     * @return RedirectResponse
-     */
     public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
@@ -187,12 +153,6 @@ class TulisblogController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Fungsi Hapus Data
-     *
-     * @param  mixed $tulisblogs
-     * @return void
-     */
     public function destroy($id): RedirectResponse
     {
         $tulisblog = Tulisblog::findOrFail($id);

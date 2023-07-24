@@ -96,7 +96,8 @@
                     <div class="wow rounded-lg fadeInUp flex items-center bg-red-500 bg-opacity-50"
                         data-wow-delay=".1s">
                         <!-- Tambahkan kelas flex dan bg-opacity-50 -->
-                        <iframe class="rounded-lg wow w-full h-50" src="{{ asset('storage/pdfjurnal/' . $jurnal->pdf) }}" height="750"></iframe>
+                        <iframe class="rounded-lg wow w-full h-50"
+                            src="{{ asset('storage/pdfjurnal/' . $jurnal->pdf) }}" height="750"></iframe>
                     </div>
                     <!-- Grid 2 - teks -->
                     <div class="flex flex-col justify-between">
@@ -117,9 +118,10 @@
                 <h2 class="font-semibold pb-10 text-xl text-gray-800 leading-tight">
                     {{ __('Form Hasil Review') }}
                 </h2>
-                <form action="{{ route('jurnals.storebelumreview2', ['id' => $jurnal->id]) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
+                <form action="{{ route('jurnals.storebelumreview2', ['id' => $jurnal->id]) }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
                     <div class="grid grid-cols-2 gap-4">
                         <div class="mb-6">
                             <label class="text-gray-500 text-sm mb-5">
@@ -148,7 +150,7 @@
                                 Tanggal Review Jurnal
                             </label>
                             <input type="text" placeholder="Tanggal"
-                            value="{{ \Carbon\Carbon::now()->format('d - M - Y') }}" class="
+                                value="{{ \Carbon\Carbon::now()->format('d - M - Y') }}" class="
                     pointer-events-none w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] 
               text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none 
               focus:border-red-500 focus:ring-red-500 transition" name="tanggal_review" onfocus="(this.type='date')"
@@ -157,8 +159,8 @@
 
                     </div>
                     <div class="mb-6">
-                            <label class="text-gray-500 text-sm "> Keterangan Hasil Review <br></label>
-                            <textarea placeholder="Judul Jurnal" class="
+                        <label class="text-gray-500 text-sm "> Keterangan Hasil Review <br></label>
+                        <textarea placeholder="Judul Jurnal" class="
                             w-full
                                                     rounded-md
                                                     border
@@ -174,10 +176,10 @@
                                                     focus:ring-red-500
                                                     transition
                                         " name="keterangan_review">{{ $jurnal->keterangan_review }}</textarea>
-                            @error('keterangan_review')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        @error('keterangan_review')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                     <div class="mb-6">
                         <label class="text-gray-500 text-sm "> Ketentuan Hasil Review <br></label>
                         <select name="statusreview" class="
@@ -196,11 +198,14 @@
                                                     focus:ring-red-500
                                                     transition
                                                 ">
-                            <option class="text-gray-500 text-sm " value="" >Pilih Hasil
+                            <option class="text-gray-500 text-sm " value="">Pilih Hasil
                             </option>
-                            <option class="text-gray-500 text-sm " value="jurnal telah di review">Jurnal Sudah Benar dan Baik</option>
-                            <option class="text-gray-500 text-sm " value="jurnal terdapat kesalahan">Jurnal Terdapat Kesalahan</option>
-                            <option class="text-gray-500 text-sm " value="jurnal proses lebih lanjut">Jurnal Masih Perlu Proses Review Lebih Lanjut</option>
+                            <option class="text-gray-500 text-sm " value="jurnal telah di review">Jurnal Sudah Benar dan
+                                Baik</option>
+                            <option class="text-gray-500 text-sm " value="jurnal terdapat kesalahan">Jurnal Terdapat
+                                Kesalahan</option>
+                            <option class="text-gray-500 text-sm " value="jurnal proses lebih lanjut">Jurnal Masih Perlu
+                                Proses Review Lebih Lanjut</option>
                         </select>
                         @error('statusreview')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -223,7 +228,8 @@
                                 d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span>Kami sangat menghargai waktu dan upaya yang Anda berikan untuk membantu kami menyempurnakan setiap aspek dari dokumen-dokumen ini. </span>
+                        <span>Kami sangat menghargai waktu dan upaya yang Anda berikan untuk membantu kami
+                            menyempurnakan setiap aspek dari dokumen-dokumen ini. </span>
                     </p>
 
                     <button type="submit"

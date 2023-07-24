@@ -134,7 +134,8 @@
             <div class="flex text-sm justify-end">
                 <button onclick="hideConfirmationModal()"
                     class="px-4 py-2 mr-2 bg-red-500 hover:bg-red-600 text-white rounded">Tunggu</button>
-                <a href="{{ route('jurnals.index') }}" class="px-4 py-2 mr-2 bg-green-500 hover:bg-green-600 text-white rounded">Ya, Kirim</a>
+                <a href="{{ route('jurnals.index') }}"
+                    class="px-4 py-2 mr-2 bg-green-500 hover:bg-green-600 text-white rounded">Ya, Kirim</a>
                 <form action="{{ route('jurnals.destroy', $jurnal->id) }}" method="POST"
                     onsubmit="return confirm('Karena Anda pemilik tulisan Blog ini maka fitur hapus ini ditambahkan, apakah Anda yakin ingin menghapus data ini?');">
                     @csrf

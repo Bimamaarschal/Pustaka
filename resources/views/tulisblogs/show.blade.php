@@ -34,8 +34,8 @@
 
                     <div class=" ml-5  mr-5 ">
                         <div class="flex mb-5">
-                            
-                            
+
+
 
                             @if (auth()->check())
                             @if ($tulisblogs->hasLiked(auth()->user()->id))
@@ -71,7 +71,7 @@
                             @endif
 
                         </div>
-                        
+
                         <h3>
                             <a href="blog-details.html" class="
                 font-semibold
@@ -95,16 +95,16 @@
                             Penulis: {{ $tulisblogs->penulis }}
                         </p>
                         <span
-                                class="bg-red-500 mb-3 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white mr-2">
-                                {{ $tulisblogs->tanggal }}
-                            </span>
+                            class="bg-red-500 mb-3 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white mr-2">
+                            {{ $tulisblogs->tanggal }}
+                        </span>
                         <span
-                                class="bg-red-500 mb-3 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white">
-                                Telah di baca : {{ $tulisblogs->view_count }} kali
-                            </span>
-                            <p
-                                class="bg-red-500 mb-3 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white ml-2 mr-2">
-                                Jumlah Suka: {{ $tulisblogs->like_count }}</p>
+                            class="bg-red-500 mb-3 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white">
+                            Telah di baca : {{ $tulisblogs->view_count }} kali
+                        </span>
+                        <p
+                            class="bg-red-500 mb-3 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white ml-2 mr-2">
+                            Jumlah Suka: {{ $tulisblogs->like_count }}</p>
                     </div>
                 </div>
 

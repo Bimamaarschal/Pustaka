@@ -16,7 +16,6 @@
     <!-- Styles -->
     @livewireStyles
     <style>
-    /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
     *,
     ::after,
     ::before {
@@ -816,15 +815,12 @@
         @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
             @auth
-            <a href="{{ url('/dashboard') }}"
-                class="font-semibold text-gray-600 hover:text-gray-900 ">Dashboard</a>
+            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 ">Dashboard</a>
             @else
-            <a href="{{ route('login') }}"
-                class="font-semibold text-gray-600 hover:text-gray-900 ">Masuk</a>
+            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 ">Masuk</a>
 
             @if (Route::has('register'))
-            <a href="{{ route('register') }}"
-                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 ">Daftar</a>
+            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 ">Daftar</a>
             @endif
             @endauth
         </div>

@@ -40,13 +40,15 @@
                             </span>
 
                             <span
-                            class="bg-red-500 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white mr-2">
+                                class="bg-red-500 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white mr-2">
                                 Telah di baca : {{ $tulisblogs->view_count }} kali
                             </span>
 
                             @if($tulisblogs->like_status)
-                            <span class="bg-red-500 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white mr-2 ml-2">
-                                {{ $tulisblogs->like_count }} Suka Blog Ini{{ $tulisblogs->like_count === 1 ? '' : 's' }}
+                            <span
+                                class="bg-red-500 rounded inline-block text-center py-1 px-2 text-xs leading-loose font-semibold text-white mr-2 ml-2">
+                                {{ $tulisblogs->like_count }} Suka Blog
+                                Ini{{ $tulisblogs->like_count === 1 ? '' : 's' }}
                             </span>
                             @else
                             <form action="{{ route('like', $tulisblogs->id) }}" method="POST">

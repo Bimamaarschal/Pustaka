@@ -108,7 +108,8 @@
                     <div class="wow rounded-lg fadeInUp flex items-center bg-red-500 bg-opacity-50"
                         data-wow-delay=".1s">
                         <!-- Tambahkan kelas flex dan bg-opacity-50 -->
-                        <iframe class="rounded-lg wow w-full h-50" src="{{ asset('storage/pdfjurnal/' . $jurnal->pdf) }}" height="750"></iframe>
+                        <iframe class="rounded-lg wow w-full h-50"
+                            src="{{ asset('storage/pdfjurnal/' . $jurnal->pdf) }}" height="750"></iframe>
                     </div>
                     <!-- Grid 2 - teks -->
                     <div class="flex flex-col justify-between">

@@ -23,7 +23,8 @@
                                 d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                         </svg>
                         <span>Dengan mengajukan penyimpanan jurnal, Anda menyetujui kebijakan komunitas kami dan
-                            bersedia mematuhi kebijakan tersebut.<br> Setelah di review oleh tim kami Jurnal akan dibagikan secara publik.</span>
+                            bersedia mematuhi kebijakan tersebut.<br> Setelah di review oleh tim kami Jurnal akan
+                            dibagikan secara publik.</span>
                     </p>
 
 
@@ -173,12 +174,13 @@
                                                     focus:ring-red-500
                                                     transition
                 " rows="5"></textarea>
-                @error('abstrak')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
+                            @error('abstrak')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-6">
-                            <label class="text-gray-500 text-sm "> Pilih Jurnal Anda (Pastikan berekstensi PDF dengan ukuran maksimal 20mb)</label>
+                            <label class="text-gray-500 text-sm "> Pilih Jurnal Anda (Pastikan berekstensi PDF dengan
+                                ukuran maksimal 20mb)</label>
                             <div class="col-span-12 mb-2">
                                 <span class="sr-only">Pilih Jurnal Anda</span>
                                 <input type="file" name="pdf" placeholder="Pilih Jurnal Anda" class="block w-full text-sm text-slate-500

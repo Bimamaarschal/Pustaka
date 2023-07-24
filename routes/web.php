@@ -61,4 +61,3 @@ Route::middleware([
     Route::get('jurnals/lihatdata/{id}', '\App\Http\Controllers\JurnalController@lihatdata')->name('jurnals.lihatdata');
 
 });
-

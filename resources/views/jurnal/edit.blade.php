@@ -9,14 +9,13 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 pb-10 lg:p-8 bg-white border-b border-gray-200">
 
-                <div class="pb-10"
-                                        style="display: flex; justify-content: space-between; align-items: center;">
-                                        <h1 class="text-2xl font-medium text-dark-500" style="flex-grow: 1;">
-                                            Pilihan Tema Jurnal
-                                        </h1>
-                                        <a href="{{ route('jurnals.review', ['id' => $jurnal->id]) }}"
-                                            class="bg-red-500 mb-15 text-white px-6 py-2 rounded">Batal Edit</a>
-                                    </div>
+                    <div class="pb-10" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h1 class="text-2xl font-medium text-dark-500" style="flex-grow: 1;">
+                            Pilihan Tema Jurnal
+                        </h1>
+                        <a href="{{ route('jurnals.review', ['id' => $jurnal->id]) }}"
+                            class="bg-red-500 mb-15 text-white px-6 py-2 rounded">Batal Edit</a>
+                    </div>
 
                     <p class="flex items-center space-x-2 text-sm pb-8 text-gray-500">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -59,11 +58,10 @@
                                 <label class="text-gray-500 text-sm mb-5">
                                     Tanggal Pebuatan Jurnal
                                 </label>
-                                <input type="text" value="{{ $jurnal->tanggalterbit }}" placeholder="Tanggal"
-                                     class=" w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] 
+                                <input type="text" value="{{ $jurnal->tanggalterbit }}" placeholder="Tanggal" class=" w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] 
                                             text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none 
-                                            focus:border-red-500 focus:ring-red-500 transition" name="tanggalterbit" onfocus="(this.type='date')"
-                                    onblur="(this.type='text')" />
+                                            focus:border-red-500 focus:ring-red-500 transition" name="tanggalterbit"
+                                    onfocus="(this.type='date')" onblur="(this.type='text')" />
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
@@ -90,7 +88,8 @@
                                 @enderror
                             </div>
                             <div class="mb-6">
-                                <label class="text-gray-500 text-sm ">Gambar Representasi Tersimpan Anda Masih Dapat Mengubahnya <br></label>
+                                <label class="text-gray-500 text-sm ">Gambar Representasi Tersimpan Anda Masih Dapat
+                                    Mengubahnya <br></label>
                                 <div class="col-span-12 mb-2">
                                     <span class="sr-only">Pilih gambar sampul anda</span>
                                     <input type="file" value="{{ $jurnal->image }}" name="image"
@@ -124,7 +123,7 @@
                                                     focus:ring-red-500
                                                     transition
                                                 ">
-                                <option class="text-gray-500 text-sm " value="" disabled >Pilih kategori
+                                <option class="text-gray-500 text-sm " value="" disabled>Pilih kategori
                                 </option>
                                 <option class="text-gray-500 text-sm " value="Teknologi">Teknologi</option>
                                 <option class="text-gray-500 text-sm " value="Bisnis">Bisnis</option>
@@ -182,7 +181,8 @@
                                                 " rows="5">{{ $jurnal->abstrak }}</textarea>
                         </div>
                         <div class="mb-6">
-                            <label class="text-gray-500 text-sm "> Data Jurnal Telah Tersimpan Anda Masih Dapat Mengubahnya (Pastikan berekstensi PDF dengan
+                            <label class="text-gray-500 text-sm "> Data Jurnal Telah Tersimpan Anda Masih Dapat
+                                Mengubahnya (Pastikan berekstensi PDF dengan
                                 ukuran maksimal 20mb)</label>
                             <div class="col-span-12 mb-2">
                                 <span class="sr-only">Pilih Jurnal Anda</span>

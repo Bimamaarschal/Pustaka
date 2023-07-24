@@ -18,7 +18,7 @@ class JurnalController extends Controller
     public function index(): View
     {
         $itemsPerPage = 6;
-        $statusdis = ['jurnal telah di review', 'jurnal khusus']; // Ganti dengan status yang ingin ditampilkan
+        $statusdis = ['jurnal telah di review', 'jurnal khusus'];
 
         $jurnals = Jurnal::whereIn('statusreview', $statusdis)
             ->latest()
@@ -40,7 +40,7 @@ class JurnalController extends Controller
     public function belumreview(): View
     {
         $itemsPerPage = 6;
-        $statusdis = ['belum di review', 'jurnal terdapat kesalahan', 'jurnal proses lebih lanjut']; // Ganti dengan status yang ingin ditampilkan
+        $statusdis = ['belum di review', 'jurnal terdapat kesalahan', 'jurnal proses lebih lanjut'];
 
         $belums = Jurnal::whereIn('statusreview', $statusdis)
             ->latest()
@@ -238,8 +238,6 @@ class JurnalController extends Controller
             'nama_review.required' => 'Nama review tidak boleh kosong.',
             'statusreview.required' => 'Ganti status review sesuai pernyataan review Anda',
         ]);
-
-        // Perbarui data jurnal dengan informasi review
         $jurnal->update([
             'statusreview' => $request->statusreview,
             'keterangan_review' => $request->keterangan_review,

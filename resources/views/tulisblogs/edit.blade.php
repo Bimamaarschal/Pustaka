@@ -20,7 +20,8 @@
                                     <div class="mb-6">
                                         <label class="text-gray-500"> Nama Penulis (Ini tidak dapat di ubah)
                                             <br></label>
-                                        <input type="text" placeholder="Penulis" value="{{ old('penulis', $tulisblog->penulis) }}" class="
+                                        <input type="text" placeholder="Penulis"
+                                            value="{{ old('penulis', $tulisblog->penulis) }}" class="
                     w-full 
                     pointer-events-none
                   rounded-md
@@ -64,9 +65,10 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="mb-6">
-                                    <label class="text-gray-500"> Judul Blog
+                                        <label class="text-gray-500"> Judul Blog
                                             <br></label>
-                                        <input type="text" value="{{ old('judul', $tulisblog->judul) }}" placeholder="Judul" class="
+                                        <input type="text" value="{{ old('judul', $tulisblog->judul) }}"
+                                            placeholder="Judul" class="
                     w-full 
                   rounded-md
                   border
@@ -87,7 +89,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-6">
-                                    <label class="text-gray-500"> Gambar telah tersedia Anda dapat mengubahnya
+                                        <label class="text-gray-500"> Gambar telah tersedia Anda dapat mengubahnya
                                             <br></label>
                                         <div class="col-span-12 mb-2">
                                             <span class="sr-only">Pilih gambar sampul anda</span>
@@ -104,9 +106,10 @@
                                     </div>
                                 </div>
                                 <div class="mb-6">
-                                <label class="text-gray-500"> Kata pembuka
-                                            <br></label>
-                                    <input name="konten1" value="{{ old('konten1', $tulisblog->konten1) }}" placeholder="Kata pembuka" class="
+                                    <label class="text-gray-500"> Kata pembuka
+                                        <br></label>
+                                    <input name="konten1" value="{{ old('konten1', $tulisblog->konten1) }}"
+                                        placeholder="Kata pembuka" class="
                   w-full
                   rounded-md
                   border

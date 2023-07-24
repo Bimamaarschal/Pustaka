@@ -27,13 +27,11 @@
             <x-slot name="content">
                 {{ __('Apakah Anda yakin ingin menghapus akun Anda? Setelah akun Anda dihapus, semua sumber daya dan data yang terkait akan dihapus secara permanen. Silakan masukkan kata sandi Anda untuk mengkonfirmasi bahwa Anda ingin menghapus akun Anda secara permanen.') }}
 
-                <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-input type="password" class="mt-1 block w-3/4"
-                                autocomplete="current-password"
-                                placeholder="{{ __('Password') }}"
-                                x-ref="password"
-                                wire:model.defer="password"
-                                wire:keydown.enter="deleteUser" />
+                <div class="mt-4" x-data="{}"
+                    x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
+                    <x-input type="password" class="mt-1 block w-3/4" autocomplete="current-password"
+                        placeholder="{{ __('Password') }}" x-ref="password" wire:model.defer="password"
+                        wire:keydown.enter="deleteUser" />
 
                     <x-input-error for="password" class="mt-2" />
                 </div>
