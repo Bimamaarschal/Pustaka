@@ -1,17 +1,21 @@
 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
 
-    <h1 class="mt-8 text-2xl font-medium text-gray-900">
+    <h1 class="mt-3 text-2xl font-medium text-gray-900">
         Pilih fitur yang Anda ingin tulis
     </h1>
-
-    <p class="mt-6 text-gray-500 leading-relaxed">
-        Pertimbangkan kegunaan dan relevansi fitur tersebut dengan fokus pada kebutuhan Anda. Prioritaskan fitur yang
-        mendukung kolaborasi, kemudahan penggunaan, dan meningkatkan visibilitas tulisan karya ilmiah Anda.Tips untuk
-        memilih fitur-fitur tulis yang tepat adalah dengan melakukan identifikasi kebutuhan Anda terlebih dahulu.
-        Pertimbangkan jenis tulisan yang ingin Anda publikasikan, seperti tulisan ilmiah, blog, jurnal, atau buku.
-        Selanjutnya, pilih fitur yang mendukung kolaborasi dengan adanya komentar, diskusi, dan kemampuan berbagi dengan
-        penulis dan pembaca lain.
-    </p>
+    <p class="
+                  text-lg
+                  sm:text-xl
+                  leading-relaxed
+                  md:text-[15px]
+                  sm:leading-relaxed
+                  text-gray-600
+                  pb-5
+                  pt-5
+                ">
+                Pertimbangkan kegunaan dan relevansi fitur tersebut dengan fokus pada kebutuhan Anda. Prioritaskan fitur yang
+        mendukung kolaborasi, kemudahan penggunaan, dan meningkatkan visibilitas tulisan karya ilmiah Anda.
+                    </p>
 </div>
 
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">

@@ -7,44 +7,48 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div class="mb-6">
-                        <label class="text-gray-500"> Nama Penulis (Ini tidak dapat di ubah) <br></label>
+                    <label class="text-gray-500 text-sm mb-5">
+                                    Nama (tidak dapat di ubah)
+                                </label>
                         <input type="text" placeholder="Penulis" value="{{ Auth::user()->name }}" class="
                         w-full 
                         pointer-events-none
-                      rounded-md
-                      border
-                      bordder-[#E9EDF4]
-                      py-3
-                      px-5
-                      bg-[#FCFDFE]
-                      text-base text-body-color
-                      placeholder-[#ACB6BE]
-                      outline-none
-                      focus-visible:shadow-none
-                      focus:border-red-500
-                      focus:ring-red-500
-                      transition
+                        rounded-md
+                                                    border
+                                                    border-[#E9EDF4]
+                                                    py-3
+                                                    px-5
+                                                    bg-[#FCFDFE]
+                                                    text-base text-gray-600
+                                                    placeholder-[#ACB6BE]
+                                                    outline-none
+                                                    focus-visible:shadow-none
+                                                    focus:border-red-500
+                                                    focus:ring-red-500
+                                                    transition
                     " name="penulis" />
                     </div>
                     <div class="mb-6">
-                        <label class="text-gray-500"> Tanggal Penulisan (Ini tidak dapat di ubah) <br></label>
+                    <label class="text-gray-500 text-sm">
+                                    Tanggal penulisan (tidak dapat di ubah) <br>
+                                </label>
                         <input type="text" placeholder="Penulis"
                             value="{{ \Carbon\Carbon::now()->format('d - M - Y') }}" class="
-                    pointer-events-none
-                        w-full 
-                      rounded-md
-                      border
-                      bordder-[#E9EDF4]
-                      py-3
-                      px-5
-                      bg-[#FCFDFE]
-                      text-base text-body-color
-                      placeholder-[#ACB6BE]
-                      outline-none
-                      focus-visible:shadow-none
-                      focus:border-red-500
-                      focus:ring-red-500
-                      transition
+                            w-full 
+                        pointer-events-none
+                        rounded-md
+                                                    border
+                                                    border-[#E9EDF4]
+                                                    py-3
+                                                    px-5
+                                                    bg-[#FCFDFE]
+                                                    text-base text-gray-600
+                                                    placeholder-[#ACB6BE]
+                                                    outline-none
+                                                    focus-visible:shadow-none
+                                                    focus:border-red-500
+                                                    focus:ring-red-500
+                                                    transition
                     " name="tanggal" />
                     </div>
 
@@ -55,17 +59,17 @@
                         w-full 
                       rounded-md
                       border
-                      bordder-[#E9EDF4]
-                      py-3
-                      px-5
-                      bg-[#FCFDFE]
-                      text-base text-body-color
-                      placeholder-[#ACB6BE]
-                      outline-none
-                      focus-visible:shadow-none
-                      focus:border-red-500
-                      focus:ring-red-500
-                      transition
+                                                    border-[#E9EDF4]
+                                                    py-3
+                                                    px-5
+                                                    bg-[#FCFDFE]
+                                                    text-base text-gray-600
+                                                    placeholder-[#ACB6BE]
+                                                    outline-none
+                                                    focus-visible:shadow-none
+                                                    focus:border-red-500
+                                                    focus:ring-red-500
+                                                    transition
                     " name="judul" />
                         @error('judul')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -90,17 +94,17 @@
                       w-full
                       rounded-md
                       border
-                      bordder-[#E9EDF4]
-                      py-3
-                      px-5
-                      bg-[#FCFDFE]
-                      text-base text-body-color
-                      placeholder-[#ACB6BE]
-                      outline-none
-                      focus-visible:shadow-none
-                      focus:border-red-500
-                      focus:ring-red-500
-                      transition
+                                                    border-[#E9EDF4]
+                                                    py-3
+                                                    px-5
+                                                    bg-[#FCFDFE]
+                                                    text-base text-gray-600
+                                                    placeholder-[#ACB6BE]
+                                                    outline-none
+                                                    focus-visible:shadow-none
+                                                    focus:border-red-500
+                                                    focus:ring-red-500
+                                                    transition
                     " />
                     @error('konten1')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -112,17 +116,17 @@
                       w-full
                       rounded-md
                       border
-                      bordder-[#E9EDF4]
-                      py-3
-                      px-5
-                      bg-[#FCFDFE]
-                      text-base text-body-color
-                      placeholder-[#ACB6BE]
-                      outline-none
-                      focus-visible:shadow-none
-                      focus:border-red-500
-                      focus:ring-red-500
-                      transition
+                                                    border-[#E9EDF4]
+                                                    py-3
+                                                    px-5
+                                                    bg-[#FCFDFE]
+                                                    text-base text-gray-600
+                                                    placeholder-[#ACB6BE]
+                                                    outline-none
+                                                    focus-visible:shadow-none
+                                                    focus:border-red-500
+                                                    focus:ring-red-500
+                                                    transition
                     " rows="5"></textarea>
                 </div>
                 <button type="submit"

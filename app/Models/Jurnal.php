@@ -31,5 +31,6 @@ class Jurnal extends Model
         'keterangan_review',
         'tanggal_review',
         'nama_review',
+        'nama_pengirim',
     ];
 }

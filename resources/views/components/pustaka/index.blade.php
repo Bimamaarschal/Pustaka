@@ -1,8 +1,9 @@
 <section class="p-10">
     <div class="container">
+
         <div class="flex flex-wrap -mx-4">
             <div class="w-full px-4">
-                <div class="mb-12 lg:mb-15 max-w-[620px]">
+                <div class="mb-12 lg:mb-15">
                     <h1 class="mb-10 text-2xl font-medium text-dark-900">
                         Pilih Bacaan
                     </h1>
@@ -12,7 +13,8 @@
                   leading-relaxed
                   md:text-[15px]
                   sm:leading-relaxed
-                  text-body-color
+                  text-gray-600
+                  pb-5
                 ">
                         Dalam lembaran-lembaran itu tersembunyi keajaiban yang siap memikat pikiran dan merentangkan
                         sayap imajinasi Anda.
@@ -20,6 +22,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="flex flex-wrap -mx-4">
             <div class="w-full md:w-1/2 lg:w-1/4 px-4">
                 <div class="bg-white mb-5 group wow fadeInUp" data-wow-delay=".1s">
@@ -121,7 +124,7 @@
                         Sebuah panggung yang mengilhami dan merangkul seluruh dunia untuk mengejar kebenaran dan membuka
                         pintu bagi inovasi yang tak terbatas.
                     </p>
-                    <p class="mt-4 text-sm">
+                    <!-- <p class="mt-4 text-sm">
                         <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold">
                             Baca Sekarang
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 ">
@@ -130,7 +133,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </a>
-                    </p>
+                    </p> -->
                 </div>
             </div>
             <div class="w-full md:w-1/2 lg:w-1/4 px-4">
@@ -177,7 +180,7 @@
                         Tampilan finansial strategi adalah landasan yang kokoh bagi kesuksesan dan pertumbuhan keuangan.
                         Rencana terperinci dengan hati-hati dijelaskan.
                     </p>
-                    <p class="mt-4 text-sm">
+                    <!-- <p class="mt-4 text-sm">
                         <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold">
                             Baca Sekarang
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 ">
@@ -186,7 +189,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </a>
-                    </p>
+                    </p> -->
                 </div>
             </div>
             <div class="w-full md:w-1/2 lg:w-1/4 px-4">
@@ -233,7 +236,7 @@
                         Berita adalah jendela interaktif ke dunia informasi yang cepat dan
                         dinamis. Jurnalisme berkualitas & sumber informasi kredibel.
                     </p>
-                    <p class="mt-4 text-sm">
+                    <!-- <p class="mt-4 text-sm">
                         <a href="https://laravel.com/docs" class="inline-flex items-center font-semibold">
                             Baca Sekarang
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 ">
@@ -242,7 +245,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </a>
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>
@@ -252,7 +255,7 @@
 <section class="p-10 lg:pt-[5px]">
     <div class="container">
         <h1 class="mb-10 text-2xl font-medium text-dark-900">
-            Bacaan Populer
+            Bacaan Populer (Masih dalam pengembangan)
         </h1>
         <div class="flex flex-wrap -mx-4">
             <div class="w-full md:w-1/2 lg:w-1/3 px-4">
@@ -280,7 +283,7 @@
                     text-white
                     mb-5
                   ">
-                            Dec 22, 2023
+                            Jul 22, 2023
                         </span>
                         <h3>
                             <a href="blog-details.html" class="
@@ -294,7 +297,7 @@
                       text-dark
                       hover:text-primary
                     ">
-                                Meet AutoManage, the best AI management tools
+                    Lorem Ipsum is simply dummy text
                             </a>
                         </h3>
                         <p class="text-base text-body-color">
@@ -329,7 +332,7 @@
                     text-white
                     mb-5
                   ">
-                            Mar 15, 2023
+                  Jul 22, 2023
                         </span>
                         <h3>
                             <a href="blog-details.html" class="
@@ -343,7 +346,7 @@
                       text-dark
                       hover:text-primary
                     ">
-                                How to earn more money as a wellness coach
+                    Lorem Ipsum is simply dummy text
                             </a>
                         </h3>
                         <p class="text-base text-body-color">
@@ -378,7 +381,7 @@
                     text-white
                     mb-5
                   ">
-                            Jan 05, 2023
+                  Jul 22, 2023
                         </span>
                         <h3>
                             <a href="blog-details.html" class="
@@ -392,7 +395,7 @@
                       text-dark
                       hover:text-primary
                     ">
-                                The no-fuss guide to upselling and cross selling
+                    Lorem Ipsum is simply dummy text
                             </a>
                         </h3>
                         <p class="text-base text-body-color">
@@ -402,300 +405,9 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
-                    <div class="rounded overflow-hidden mb-8">
-                        <a href="blog-details.html" class="block">
-                            <img src="image/pustaka/4.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                        </a>
-                    </div>
-                    <div>
-                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                            Mar 15, 2023
-                        </span>
-                        <h3>
-                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                How to earn more money as a wellness coach
-                            </a>
-                        </h3>
-                        <p class="text-base text-body-color">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                <div class="mb-10 group wow fadeInUp" data-wow-delay=".15s">
-                    <div class="rounded overflow-hidden mb-8">
-                        <a href="blog-details.html" class="block">
-                            <img src="image/pustaka/1.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                        </a>
-                    </div>
-                    <div>
-                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                            Jan 05, 2023
-                        </span>
-                        <h3>
-                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                The no-fuss guide to upselling and cross selling
-                            </a>
-                        </h3>
-                        <p class="text-base text-body-color">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                <div class="mb-10 group wow fadeInUp" data-wow-delay=".2s">
-                    <div class="rounded overflow-hidden mb-8">
-                        <a href="blog-details.html" class="block">
-                            <img src="image/pustaka/2.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                        </a>
-                    </div>
-                    <div>
-                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                            Dec 22, 2023
-                        </span>
-                        <h3>
-                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                Meet AutoManage, the best AI management tools
-                            </a>
-                        </h3>
-                        <p class="text-base text-body-color">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
-                    <div class="rounded overflow-hidden mb-8">
-                        <a href="blog-details.html" class="block">
-                            <img src="image/pustaka/3.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                        </a>
-                    </div>
-                    <div>
-                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                            Dec 22, 2023
-                        </span>
-                        <h3>
-                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                Meet AutoManage, the best AI management tools
-                            </a>
-                        </h3>
-                        <p class="text-base text-body-color">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                <div class="mb-10 group wow fadeInUp" data-wow-delay=".15s">
-                    <div class="rounded overflow-hidden mb-8">
-                        <a href="blog-details.html" class="block">
-                            <img src="image/pustaka/2.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                        </a>
-                    </div>
-                    <div>
-                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                            Mar 15, 2023
-                        </span>
-                        <h3>
-                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                How to earn more money as a wellness coach
-                            </a>
-                        </h3>
-                        <p class="text-base text-body-color">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                <div class="mb-10 group wow fadeInUp" data-wow-delay=".2s">
-                    <div class="rounded overflow-hidden mb-8">
-                        <a href="blog-details.html" class="block">
-                            <img src="image/pustaka/1.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                        </a>
-                    </div>
-                    <div>
-                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                            Jan 05, 2023
-                        </span>
-                        <h3>
-                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                The no-fuss guide to upselling and cross selling
-                            </a>
-                        </h3>
-                        <p class="text-base text-body-color">
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            
+            
+
         </div>
     </div>
 </section>

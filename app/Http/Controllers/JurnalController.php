@@ -7,11 +7,9 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TulisblogResource;
-use App\Models\LikeHistory;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+
 
 
 class JurnalController extends Controller
@@ -19,7 +17,13 @@ class JurnalController extends Controller
 
     public function index(): View
     {
-        $jurnals = Jurnal::latest()->paginate(6);
+        $itemsPerPage = 6;
+        $statusdis = ['jurnal telah di review', 'jurnal khusus']; // Ganti dengan status yang ingin ditampilkan
+
+        $jurnals = Jurnal::whereIn('statusreview', $statusdis)
+            ->latest()
+            ->paginate($itemsPerPage);
+
         return view('jurnal.index', compact('jurnals'));
     }
 
@@ -36,9 +40,11 @@ class JurnalController extends Controller
     public function belumreview(): View
     {
         $itemsPerPage = 6;
-        $belums = Jurnal::where('statusreview', 'belum di review')
-                    ->latest()
-                    ->paginate($itemsPerPage);
+        $statusdis = ['belum di review', 'jurnal terdapat kesalahan', 'jurnal proses lebih lanjut']; // Ganti dengan status yang ingin ditampilkan
+
+        $belums = Jurnal::whereIn('statusreview', $statusdis)
+            ->latest()
+            ->paginate($itemsPerPage);
 
         return view('jurnal.belumreview', compact('belums'));
     }
@@ -53,37 +59,49 @@ class JurnalController extends Controller
         return view('jurnal.belumreview2', ['jurnal' => $jurnal]);
     }
 
+    public function lihatdata(string $id): View
+    {
+        $jurnal = Jurnal::findOrFail($id);
+        if (!$jurnal) {
+            return abort(404);
+        }
+
+        return view('jurnal.lihatdata', ['jurnal' => $jurnal]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
 
         $this->validate($request, [
-            'image'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'judul'                 => 'required|max:300',
-            'penulis'               => 'required',
-            'tanggalterbit'         => 'required',
-            'jenis'                 => 'required',
-            'keterangan'            => 'required|max:350',
-            'abstrak'               => 'required|max_words:350',
-            'pdf'                   => 'required|mimes:pdf|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'judul' => 'required|max:300',
+            'penulis' => 'required',
+            'tanggalterbit' => 'required',
+            'jenis' => 'required',
+            'keterangan' => 'required|max:350',
+            'abstrak' => 'required|max_words:350',
+            'pdf' => 'required|mimes:pdf|max:2048',
         ], [
-            'image.required'        => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
-            'image.image'           => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.mimes'           => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.max'             => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
-            'judul.required'        => 'Judul tidak boleh kosong.',
-            'judul.max'             => 'Judul tidak boleh lebih dari :max karakter.',
-            'penulis.required'      => 'Nama penulis tidak boleh kosong.',
-            'jenis.required'        => 'Jenis jurnal tidak boleh kosong.',
-            'keterangan.required'   => 'Kata keterangan tidak boleh kosong.',
-            'keterangan.max'        => 'Kata pendahulu tidak boleh lebih dari :max kata.',
-            'abstrak.required'      => 'Abstrak tidak boleh kosong.',
-            'abstrak.max_words'     => 'Abstrak standar 300-350 kata.',
-            'pdf.required'          => 'File PDF tidak boleh kosong.',
-            'pdf.mimes'             => 'Mohon untuk tambahkan pdf dengan format pdf.',
-            'pdf.max'               => 'Ukuran pdf tidak boleh lebih dari 2048mb.',
+            'image.required' => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
+            'image.image' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.mimes' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
+            'judul.required' => 'Judul tidak boleh kosong.',
+            'judul.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'penulis.required' => 'Nama penulis tidak boleh kosong.',
+            'jenis.required' => 'Jenis jurnal tidak boleh kosong.',
+            'keterangan.required' => 'Kata keterangan tidak boleh kosong.',
+            'keterangan.max' => 'Kata pendahulu tidak boleh lebih dari :max kata.',
+            'abstrak.required' => 'Abstrak tidak boleh kosong.',
+            'abstrak.max_words' => 'Abstrak standar 300-350 kata.',
+            'pdf.required' => 'File PDF tidak boleh kosong.',
+            'pdf.mimes' => 'Mohon untuk tambahkan pdf dengan format pdf.',
+            'pdf.max' => 'Ukuran pdf tidak boleh lebih dari 2048mb.',
         ]);
 
         $keteranganHak = "Hak jurnal ini dilindungi PUSTAKA";
+
+        $user = Auth::user();
 
         $image = $request->file('image');
         $image->storeAs('public/jurnal', $image->hashName());
@@ -92,15 +110,16 @@ class JurnalController extends Controller
         $pdf->storeAs('public/pdfjurnal', $pdf->hashName());
 
         $newPost = Jurnal::create([
-            'image'                 => $image->hashName(),
-            'judul'                 => $request->judul,
-            'penulis'               => $request->penulis,
-            'tanggalterbit'         => $request->tanggalterbit,
-            'jenis'                 => $request->jenis,
-            'keterangan'            => $request->keterangan,
-            'abstrak'               => $request->abstrak,
-            'hak'                   => $keteranganHak,
-            'pdf'                   => $pdf->hashName()
+            'image' => $image->hashName(),
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'tanggalterbit' => $request->tanggalterbit,
+            'jenis' => $request->jenis,
+            'keterangan' => $request->keterangan,
+            'abstrak' => $request->abstrak,
+            'hak' => $keteranganHak,
+            'pdf' => $pdf->hashName(),
+            'nama_pengirim' => $user->name
         ]);
 
         if (!$newPost) {
@@ -143,57 +162,57 @@ class JurnalController extends Controller
         }
 
         $request->validate([
-            'image'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'judul'                 => 'required|max:300',
-            'penulis'               => 'required',
-            'tanggalterbit'         => 'required',
-            'jenis'                 => 'required',
-            'keterangan'            => 'required|max:350',
-            'abstrak'               => 'required',
-            'pdf'                   => 'mimes:pdf|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'judul' => 'required|max:300',
+            'penulis' => 'required',
+            'tanggalterbit' => 'required',
+            'jenis' => 'required',
+            'keterangan' => 'required|max:350',
+            'abstrak' => 'required',
+            'pdf' => 'mimes:pdf|max:2048',
         ], [
-            'image.required'        => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
-            'image.image'           => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.mimes'           => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.max'             => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
-            'judul.required'        => 'Judul tidak boleh kosong.',
-            'judul.max'             => 'Judul tidak boleh lebih dari :max karakter.',
-            'penulis.required'      => 'Nama penulis tidak boleh kosong.',
-            'jenis.required'        => 'Jenis jurnal tidak boleh kosong.',
-            'keterangan.required'   => 'Kata keterangan tidak boleh kosong.',
-            'keterangan.max'        => 'Kata pendahulu tidak boleh lebih dari :max kata.',
-            'abstrak.required'      => 'Abstrak tidak boleh kosong.',
-            'pdf.required'          => 'File PDF tidak boleh kosong.',
-            'pdf.mimes'             => 'Mohon untuk tambahkan pdf dengan format pdf.',
-            'pdf.max'               => 'Ukuran pdf tidak boleh lebih dari 2048mb.',
+            'image.required' => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
+            'image.image' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.mimes' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.max' => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
+            'judul.required' => 'Judul tidak boleh kosong.',
+            'judul.max' => 'Judul tidak boleh lebih dari :max karakter.',
+            'penulis.required' => 'Nama penulis tidak boleh kosong.',
+            'jenis.required' => 'Jenis jurnal tidak boleh kosong.',
+            'keterangan.required' => 'Kata keterangan tidak boleh kosong.',
+            'keterangan.max' => 'Kata pendahulu tidak boleh lebih dari :max kata.',
+            'abstrak.required' => 'Abstrak tidak boleh kosong.',
+            'pdf.required' => 'File PDF tidak boleh kosong.',
+            'pdf.mimes' => 'Mohon untuk tambahkan pdf dengan format pdf.',
+            'pdf.max' => 'Ukuran pdf tidak boleh lebih dari 2048mb.',
         ]);
 
         if ($request->hasFile('image')) {
 
-            $image                   = $request->file('image');
+            $image = $request->file('image');
 
-            $image  ->storeAs('public/jurnal/', $image->hashName());
+            $image->storeAs('public/jurnal/', $image->hashName());
             Storage::delete('public/jurnal/' . $jurnal->image);
 
-            $jurnal ->image          = $image->hashName();
+            $jurnal->image = $image->hashName();
         }
-    
+
         if ($request->hasFile('pdf')) {
-            $pdf                     = $request->file('pdf');
-            $pdf    ->storeAs('public/pdfjurnal/', $pdf->hashName());
+            $pdf = $request->file('pdf');
+            $pdf->storeAs('public/pdfjurnal/', $pdf->hashName());
 
             if ($jurnal->pdf) {
                 Storage::delete('public/pdfjurnal/' . $jurnal->pdf);
             }
-    
-            $jurnal->pdf            = $pdf->hashName();
+
+            $jurnal->pdf = $pdf->hashName();
         }
-            $jurnal->judul          = $request->input('judul');
-            $jurnal->penulis        = $request->input('penulis');
-            $jurnal->tanggalterbit  = $request->input('tanggalterbit');
-            $jurnal->jenis          = $request->input('jenis');
-            $jurnal->keterangan     = $request->input('keterangan');
-            $jurnal->abstrak        = $request->input('abstrak');
+        $jurnal->judul = $request->input('judul');
+        $jurnal->penulis = $request->input('penulis');
+        $jurnal->tanggalterbit = $request->input('tanggalterbit');
+        $jurnal->jenis = $request->input('jenis');
+        $jurnal->keterangan = $request->input('keterangan');
+        $jurnal->abstrak = $request->input('abstrak');
 
         $jurnal->save();
 
@@ -201,37 +220,44 @@ class JurnalController extends Controller
     }
 
     public function storebelumreview2(Request $request, string $id)
-{
-    $jurnal = Jurnal::findOrFail($id);
-    if (!$jurnal) {
-        return abort(404);
+    {
+        $jurnal = Jurnal::findOrFail($id);
+        if (!$jurnal) {
+            return abort(404);
+        }
+
+        $request->validate([
+            'keterangan_review' => 'required|max:200',
+            'tanggal_review' => 'required',
+            'nama_review' => 'required',
+            'statusreview' => 'required',
+        ], [
+            'keterangan_review.required' => 'Mohon untuk tambahkan keterangan hasil review',
+            'keterangan_review.max' => 'Keterangan tidak lebih dari 200 karakter',
+            'tanggal_review.required' => 'Tanggal review tidak boleh kosong.',
+            'nama_review.required' => 'Nama review tidak boleh kosong.',
+            'statusreview.required' => 'Ganti status review sesuai pernyataan review Anda',
+        ]);
+
+        // Perbarui data jurnal dengan informasi review
+        $jurnal->update([
+            'statusreview' => $request->statusreview,
+            'keterangan_review' => $request->keterangan_review,
+            'tanggal_review' => $request->tanggal_review,
+            'nama_review' => $request->nama_review
+        ]);
+
+        return redirect()->route('jurnals.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
-    $request->validate([
-        'keterangan_review' => 'required|max:200',
-        'tanggal_review' => 'required',
-        'nama_review' => 'required',
-        'statusreview' => 'required',
-    ], [
-        'keterangan_review.required' => 'Mohon untuk tambahkan keterangan hasil review',
-        'keterangan_review.max' => 'Keterangan tidak lebih dari 200 karakter',
-        'tanggal_review.required' => 'Tanggal review tidak boleh kosong.',
-        'nama_review.required' => 'Nama review tidak boleh kosong.',
-    ]);
-
-    // Perbarui data jurnal dengan informasi review
-    $jurnal->update([
-        'statusreview' => $request->statusreview,
-        'keterangan_review' => $request->keterangan_review,
-        'tanggal_review' => $request->tanggal_review,
-        'nama_review' => $request->nama_review
-    ]);
-
-    return redirect()->route('jurnals.index')->with('success', 'Data Berhasil Disimpan!');
-}
-
-    public function destroy(Jurnal $jurnal)
+    public function destroy($id): RedirectResponse
     {
-        //
+        $jurnal = Jurnal::findOrFail($id);
+
+        Storage::delete('public/jurnal/' . basename($jurnal->image));
+        Storage::delete('public/pdfjurnal/' . basename($jurnal->pdf));
+        $jurnal->delete();
+
+        return redirect()->route('jurnals.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

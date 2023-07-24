@@ -31,22 +31,26 @@
                                 {{ $jurnal->hak }}
                             </span>
                             <span class="inline-block text-center py-1 px-2 text-xs leading-loose font-semibold mr-2
-                                @if ($jurnal->statusreview === 'belum di review')
+                            @if ($jurnal->statusreview === 'belum di review')
                                     bg-red-500 text-white
-                                @elseif ($jurnal->statusreview === 'telah di review')
+                                @elseif ($jurnal->statusreview === 'jurnal telah di review')
                                     bg-green-500 text-white
-                                @elseif ($jurnal->statusreview === 'terdapat kesalahan')
-                                    bg-yellow-500 text-black
+                                @elseif ($jurnal->statusreview === 'jurnal terdapat kesalahan')
+                                    bg-yellow-500 text-white
+                                @elseif ($jurnal->statusreview === 'jurnal proses lebih lanjut')
+                                    bg-yellow-500 text-white
                                 @else
                                     bg-gray-500 text-white
                                 @endif
                                 rounded">
                                 @if ($jurnal->statusreview === 'belum di review')
                                 Jurnal berstatus belum di review
-                                @elseif ($jurnal->statusreview === 'telah di review')
+                                @elseif ($jurnal->statusreview === 'jurnal telah di review')
                                 Jurnal berstatus sudah di review
-                                @elseif ($jurnal->statusreview === 'terdapat kesalahan')
-                                Jurnal berstatus kesalahan
+                                @elseif ($jurnal->statusreview === 'jurnal terdapat kesalahan')
+                                Jurnal berstatus terdapat kesalahan
+                                @elseif ($jurnal->statusreview === 'jurnal proses lebih lanjut')
+                                Jurnal berstatus proses review lebih lanjut
                                 @else
                                 Status review tidak valid
                                 @endif
@@ -92,8 +96,7 @@
                     <div class="wow rounded-lg fadeInUp flex items-center bg-red-500 bg-opacity-50"
                         data-wow-delay=".1s">
                         <!-- Tambahkan kelas flex dan bg-opacity-50 -->
-                        <iframe class="rounded-lg wow w-full h-full"
-                            src="{{ asset('storage/pdfjurnal/' . $jurnal->pdf) }}"></iframe>
+                        <iframe class="rounded-lg wow w-full h-50" src="{{ asset('storage/pdfjurnal/' . $jurnal->pdf) }}" height="750"></iframe>
                     </div>
                     <!-- Grid 2 - teks -->
                     <div class="flex flex-col justify-between">
@@ -170,7 +173,7 @@
                                                     focus:border-red-500
                                                     focus:ring-red-500
                                                     transition
-                                        " name="keterangan_review"></textarea>
+                                        " name="keterangan_review">{{ $jurnal->keterangan_review }}</textarea>
                             @error('keterangan_review')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -193,7 +196,7 @@
                                                     focus:ring-red-500
                                                     transition
                                                 ">
-                            <option class="text-gray-500 text-sm " value="" disabled>Pilih Hasil
+                            <option class="text-gray-500 text-sm " value="" >Pilih Hasil
                             </option>
                             <option class="text-gray-500 text-sm " value="jurnal telah di review">Jurnal Sudah Benar dan Baik</option>
                             <option class="text-gray-500 text-sm " value="jurnal terdapat kesalahan">Jurnal Terdapat Kesalahan</option>

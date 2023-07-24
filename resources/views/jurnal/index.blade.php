@@ -27,14 +27,13 @@
                                                 leading-relaxed
                                                 md:text-[15px]
                                                 sm:leading-relaxed
-                                                text-dark-500
+                                                text-gray-600
                                                 ">
                                         Selamat datang di PUSTAKA Jurnal, Nikmati fitur jurnal
-                                        yang menyediakan akses mudah ke ribuan jurnal terkini dari berbagai bidang ilmu.
+                                        yang menyediakan akses mudah ke ribuan jurnal terkini dari berbagai bidang
+                                        ilmu.<br>
                                         Baca jurnal online dari kenyamanan rumah Anda dan berkontribusi dengan
-                                        partisipasi tambah jurnal untuk berbagi pengetahuan orisinal. Mari bersama-sama
-                                        menciptakan perubahan dan menerangi pengetahuan demi kemajuan ilmu pengetahuan
-                                        dan kebermanfaatan umat manusia.
+                                        partisipasi tambah jurnal untuk berbagi pengetahuan orisinal.
                                     </p>
                                 </div>
                             </div>
@@ -71,18 +70,19 @@
                     group-hover:rotate-45
                     duration-300
                   "></span>
+
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="white" stroke-width="1.5" width="35" height="35">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
+                                                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                                         </svg>
+
                                     </div>
                                     <h4 class="font-bold text-xl text-dark mb-3">
-                                        Blog
+                                        Teknologi
                                     </h4>
                                     <p class=" text-gray-500 mb-8 lg:mb-11 md:text-[15px]">
-                                        Blog merupakan jendela digital yang membuka pintu dunia pengetahuan dan
-                                        kreativitas dari berbagai sudut pandang pemikiran.
+                                        Halaman berisi kumpulan jurnal dengan tema/kategori teknologi.
                                     </p>
                                     <p class="mt-4 text-sm">
                                         <a href="{{ route('tulisblogs.index') }}"
@@ -129,19 +129,19 @@
                     group-hover:rotate-45
                     duration-300
                   "></span>
+
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="white" stroke-width="1.5" width="35" height="35">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                                                d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
                                         </svg>
+
                                     </div>
                                     <h4 class="font-bold text-xl text-dark mb-3">
-                                        Ilmiah Paper
+                                        Bisnis
                                     </h4>
                                     <p class="text-gray-500 mb-8 lg:mb-11 md:text-[15px]">
-                                        Sebuah panggung yang mengilhami dan merangkul seluruh dunia untuk mengejar
-                                        kebenaran dan membuka
-                                        pintu bagi inovasi yang tak terbatas.
+                                        Halaman berisi kumpulan jurnal dengan tema/kategori bisnis.
                                     </p>
                                     <p class="mt-4 text-sm">
                                         <a href="https://laravel.com/docs"
@@ -195,12 +195,10 @@
                                         </svg>
                                     </div>
                                     <h4 class="font-bold text-xl text-dark mb-3">
-                                        Finansial Strategi
+                                        Ekonomi
                                     </h4>
                                     <p class="text-gray-500 mb-8 lg:mb-11 md:text-[15px]">
-                                        Tampilan finansial strategi adalah landasan yang kokoh bagi kesuksesan dan
-                                        pertumbuhan keuangan.
-                                        Rencana terperinci dengan hati-hati dijelaskan.
+                                        Halaman berisi kumpulan jurnal dengan tema/kategori ekonomi.
                                     </p>
                                     <p class="mt-4 text-sm">
                                         <a href="https://laravel.com/docs"
@@ -250,15 +248,15 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="white" stroke-width="1.5" width="35" height="35">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                                                d="M3.75 7.5l16.5-4.125M12 6.75c-2.708 0-5.363.224-7.948.655C2.999 7.58 2.25 8.507 2.25 9.574v9.176A2.25 2.25 0 004.5 21h15a2.25 2.25 0 002.25-2.25V9.574c0-1.067-.75-1.994-1.802-2.169A48.329 48.329 0 0012 6.75zm-1.683 6.443l-.005.005-.006-.005.006-.005.005.005zm-.005 2.127l-.005-.006.005-.005.005.005-.005.005zm-2.116-.006l-.005.006-.006-.006.005-.005.006.005zm-.005-2.116l-.006-.005.006-.005.005.005-.005.005zM9.255 10.5v.008h-.008V10.5h.008zm3.249 1.88l-.007.004-.003-.007.006-.003.004.006zm-1.38 5.126l-.003-.006.006-.004.004.007-.006.003zm.007-6.501l-.003.006-.007-.003.004-.007.006.004zm1.37 5.129l-.007-.004.004-.006.006.003-.004.007zm.504-1.877h-.008v-.007h.008v.007zM9.255 18v.008h-.008V18h.008zm-3.246-1.87l-.007.004L6 16.127l.006-.003.004.006zm1.366-5.119l-.004-.006.006-.004.004.007-.006.003zM7.38 17.5l-.003.006-.007-.003.004-.007.006.004zm-1.376-5.116L6 12.38l.003-.007.007.004-.004.007zm-.5 1.873h-.008v-.007h.008v.007zM17.25 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zm0 4.5a.75.75 0 110-1.5.75.75 0 010 1.5z" />
                                         </svg>
+
                                     </div>
                                     <h4 class="font-bold text-xl text-dark mb-3">
-                                        Berita
+                                        Sejarah
                                     </h4>
                                     <p class="text-gray-500 mb-8 lg:mb-11 md:text-[15px]">
-                                        Berita adalah jendela interaktif ke dunia informasi yang cepat dan
-                                        dinamis. Jurnalisme berkualitas & sumber informasi kredibel.
+                                        Halaman berisi kumpulan jurnal dengan tema/kategori sejarah.
                                     </p>
                                     <p class="mt-4 text-sm">
                                         <a href="https://laravel.com/docs"
@@ -281,18 +279,17 @@
                 <section class="p-10 lg:pt-[5px]">
                     <div class="container">
                         <h1 class="mb-10 text-2xl font-medium text-dark-900">
-                            Koleksi Jurnal Populer
+                            Kumpulan Jurnal Tereview
                         </h1>
                         <div class="flex flex-wrap -mx-4">
+                            @foreach ($jurnals as $jurnal)
                             <div class="w-full md:w-1/2 lg:w-1/3 px-4">
                                 <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/1.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
+                                    <div class="rounded overflow-hidden mb-8" style="width: 350px; height: 220px;">
+                                        <a href="{{ route('jurnals.lihatdata', $jurnal->id) }}" class="block">
+                                            <img src="{{ asset('storage/jurnal/' . $jurnal->image) }}" alt="image"
+                                                class="w-full object-cover object-center rounded"
+                                                style=" height: 220px;">
                                         </a>
                                     </div>
                                     <div>
@@ -309,10 +306,10 @@
                     text-white
                     mb-5
                   ">
-                                            Dec 22, 2023
+                                            {{ $jurnal->tanggalterbit }}
                                         </span>
                                         <h3>
-                                            <a href="blog-details.html" class="
+                                            <a href="{{ route('jurnals.lihatdata', $jurnal->id) }}" class="
                       font-semibold
                       text-xl
                       sm:text-2xl
@@ -323,411 +320,63 @@
                       text-dark
                       hover:text-primary
                     ">
-                                                Meet AutoManage, the best AI management tools
+                                                {{ $jurnal->judul }}
                                             </a>
                                         </h3>
                                         <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
+                                            {{ $jurnal->keterangan }}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".15s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/2.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Mar 15, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                How to earn more money as a wellness coach
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/3.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Jan 05, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                The no-fuss guide to upselling and cross selling
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/4.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Mar 15, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                How to earn more money as a wellness coach
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".15s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/1.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Jan 05, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                The no-fuss guide to upselling and cross selling
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/2.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Dec 22, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                Meet AutoManage, the best AI management tools
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/3.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Dec 22, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                Meet AutoManage, the best AI management tools
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".15s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/2.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Mar 15, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                How to earn more money as a wellness coach
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="rounded overflow-hidden mb-8">
-                                        <a href="blog-details.html" class="block">
-                                            <img src="image/pustaka/1.jpg" alt="image" class="
-                      w-full
-                      transition
-                      group-hover:scale-125 group-hover:rotate-6
-                    " />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span class="
-                    bg-red-600
-                    rounded
-                    inline-block
-                    text-center
-                    py-1
-                    px-4
-                    text-xs
-                    leading-loose
-                    font-semibold
-                    text-white
-                    mb-5
-                  ">
-                                            Jan 05, 2023
-                                        </span>
-                                        <h3>
-                                            <a href="blog-details.html" class="
-                      font-semibold
-                      text-xl
-                      sm:text-2xl
-                      lg:text-xl
-                      xl:text-2xl
-                      mb-4
-                      inline-block
-                      text-dark
-                      hover:text-primary
-                    ">
-                                                The no-fuss guide to upselling and cross selling
-                                            </a>
-                                        </h3>
-                                        <p class="text-base text-body-color">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
+
                     </div>
                 </section>
+                <div class="p-5 lg:p-8 bg-white border-b border-gray-200">
+                    <div class="relative">
+                        <div class="absolute bottom-0 right-0 p-2">
+                            <nav aria-label="Page navigation example" class=" pr-2 pl-2 bottom-0 left-0 right-0">
+                                <ul class="list-style-none flex">
+                                    <li class=" pr-2 pl-2">
+                                        @if ($jurnals->onFirstPage())
+                                        <a
+                                            class="pointer-events-none relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400">Kembali</a>
+                                        @else
+                                        <a href="{{ $jurnals->previousPageUrl() }}"
+                                            class="relative block rounded bg-red-400 px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-red-700 dark:hover:text-white">Kembali</a>
+                                        @endif
+                                    </li>
+                                    <!-- Tampilkan navigasi halaman -->
+                                    @for ($page = 1; $page <= $jurnals->lastPage(); $page++)
+                                        @if ($page == $jurnals->currentPage())
+                                        <li aria-current="page" class=" pr-2 pl-2">
+                                            <a class="relative block rounded bg-red-500 px-3 py-1.5 text-sm font-medium text-white transition-all duration-300"
+                                                href="{{ $jurnals->url($page) }}">{{ $page }}</a>
+                                        </li>
+                                        @else
+                                        <li>
+                                            <a class="relative block rounded bg-red-400  px-3 py-1.5 text-sm text-red-500 transition-all duration-300 hover:bg-red-100 dark:text-white dark:hover:bg-red-700 dark:hover:text-white"
+                                                href="{{ $jurnals->url($page) }}">{{ $page }}</a>
+                                        </li>
+                                        @endif
+                                        @endfor
+                                        <li class=" pr-2 pl-2">
+                                            @if ($jurnals->hasMorePages())
+                                            <a href="{{ $jurnals->nextPageUrl() }}"
+                                                class="relative block rounded bg-red-400 px-3 py-1.5 text-sm text-red-500 transition-all duration-300 hover:bg-red-100 dark:text-white dark:hover:bg-red-700 dark:hover:text-white">Berikutnya</a>
+                                            @else
+                                            <a
+                                                class="pointer-events-none relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400">Berikutnya</a>
+                                            @endif
+                                        </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
                 <!-- ====== Blog Section End -->
             </div>
         </div>

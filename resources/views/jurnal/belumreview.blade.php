@@ -14,6 +14,7 @@
                         <h1 class="mb-10 md:text-[20px] text-dark-500 text-right">
                             {{ date('d M Y H:i:s') }}
                         </h1>
+
                         <div class="flex flex-wrap -mx-4">
                             @foreach ($belums as $belum)
                             <div class="w-full md:w-1/2 lg:w-1/3 px-4">
@@ -60,9 +61,8 @@
                                 </div>
                             </div>
                             @endforeach
-
-
                         </div>
+
                     </div>
                 </section>
                 <div class="p-5 lg:p-8 bg-white border-b border-gray-200">
@@ -107,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
