@@ -1,15 +1,16 @@
 <div class="p-6 pb-10 lg:p-8 bg-white border-b border-gray-200">
 
     <h1 class="pb-10 mt-8 text-2xl font-medium text-gray-900">
-        Blog di mulai dari sini
+        Tulis Blog Anda
+        
         <h1>
             <form action="{{ route('tulisblogs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div class="mb-6">
-                    <label class="text-gray-500 text-sm mb-5">
-                                    Nama (tidak dapat di ubah)
-                                </label>
+                        <label class="text-gray-500 text-sm mb-5">
+                            Nama (tidak dapat di ubah)
+                        </label>
                         <input type="text" placeholder="Penulis" value="{{ Auth::user()->name }}" class="
                         w-full 
                         pointer-events-none
@@ -29,9 +30,9 @@
                     " name="penulis" />
                     </div>
                     <div class="mb-6">
-                    <label class="text-gray-500 text-sm">
-                                    Tanggal penulisan (tidak dapat di ubah) <br>
-                                </label>
+                        <label class="text-gray-500 text-sm">
+                            Tanggal penulisan (tidak dapat di ubah) <br>
+                        </label>
                         <input type="text" placeholder="Penulis"
                             value="{{ \Carbon\Carbon::now()->format('d - M - Y') }}" class="
                             w-full 
@@ -55,26 +56,45 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="mb-6">
-                        <input type="text" placeholder="Judul" class="
-                        w-full 
-                      rounded-md
-                      border
-                                                    border-[#E9EDF4]
-                                                    py-3
-                                                    px-5
-                                                    bg-[#FCFDFE]
-                                                    text-base text-gray-600
-                                                    placeholder-[#ACB6BE]
-                                                    outline-none
-                                                    focus-visible:shadow-none
-                                                    focus:border-red-500
-                                                    focus:ring-red-500
-                                                    transition
-                    " name="judul" />
+                        <input type="text"  placeholder="Judul" class="
+            w-full 
+            rounded-md
+            border border-[#E9EDF4]
+            py-3 px-5
+            bg-[#FCFDFE]
+            text-base text-gray-600
+            placeholder-[#ACB6BE]
+            outline-none
+            focus-visible:shadow-none
+            focus:border-red-500
+            focus:ring-red-500
+            transition
+        " name="judul" value="{{ old('judul') }}" id="judulInput" />
+
+                        <p class="text-gray-500 text-sm" id="charCount"></p>
+
                         @error('judul')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
+
                     </div>
+                    <script>
+                    const inputField = document.getElementById('judulInput');
+                    const charCountDisplay = document.getElementById('charCount');
+                    const maxLength = 80;
+                    function updateCharacterCount() {
+                        const currentLength = inputField.value.length;
+                        charCountDisplay.textContent = `${currentLength}/${maxLength}`;
+
+                        if (currentLength > maxLength) {
+                            charCountDisplay.style.color = 'red';
+                        } else {
+                            charCountDisplay.style.color = 'gray';
+                        }
+                    }
+                    inputField.addEventListener('input', updateCharacterCount);
+                    window.addEventListener('load', updateCharacterCount);
+                    </script>
                     <div class="mb-6">
                         <div class="col-span-12 mb-2">
                             <span class="sr-only">Pilih gambar sampul anda</span>

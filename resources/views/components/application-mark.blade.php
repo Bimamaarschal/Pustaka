@@ -1,1 +1,1 @@
-<img src="{{ url('image/logo.png') }}" style="width: 150px; padding: 20px;"/>
+<img src="{{ url('image/logo3.png') }}" style="width: 150px; padding: 20px;"/>

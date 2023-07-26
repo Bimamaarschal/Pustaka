@@ -18,10 +18,10 @@ class TulisblogController extends Controller
 
     public function index(): View
     {
-        $tulisblogs = Tulisblog::latest()->paginate(6);
-        $itemsPerPage = 6;
-        $tulisblogs = Tulisblog::latest()->paginate($itemsPerPage);
-        $tulisblogResource = new TulisblogResource(true, 'List Data Tulisan Blog Anda', $tulisblogs);
+        $tulisblogs             = Tulisblog::latest()->paginate(6);
+        $itemsPerPage           = 6;
+        $tulisblogs             = Tulisblog::latest()->paginate($itemsPerPage);
+        $tulisblogResource      = new TulisblogResource(true, 'List Data Tulisan Blog Anda', $tulisblogs);
         return view('tulisblogs.index', compact('tulisblogs', 'tulisblogResource'));
 
     }
@@ -34,38 +34,41 @@ class TulisblogController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'judul' => 'required|max:100',
-            'penulis' => 'required',
-            'tanggal' => 'required',
-            'konten1' => 'required|max:250',
-            'konten2' => 'required',
+            'image'             => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'judul'             => 'required|max:80|regex:/^[A-Za-z]{1,16}(?:\s+[A-Za-z]{1,16})*$/',
+            'penulis'           => 'required',
+            'tanggal'           => 'required',
+            'konten1'           => 'required|max:200',
+            'konten2'           => 'required',
         ], [
-            'image.required' => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
-            'image.image' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.mimes' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.max' => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
-            'judul.required' => 'Judul tidak boleh kosong.',
-            'judul.max' => 'Judul tidak boleh lebih dari :max karakter.',
-            'konten1.required' => 'Kata pendahulu tidak boleh kosong.',
-            'konten1.max' => 'Kata pendahulu tidak boleh lebih dari :max kata.',
-            'konten2.required' => 'Konten tidak boleh kosong.',
+            'image.required'    => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
+            'image.image'       => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.mimes'       => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.max'         => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
+            'judul.required'    => 'Judul tidak boleh kosong.',
+            'judul.max'         => 'Judul tidak boleh lebih dari :max karakter.',
+            'judul.regex'       => 'Perhatikan penulisan judul Anda',
+            'konten1.required'  => 'Kata pendahulu tidak boleh kosong.',
+            'konten1.max'       => 'Kata pendahulu tidak boleh lebih dari :max kata.',
+            'konten2.required'  => 'Konten tidak boleh kosong.',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         $image = $request->file('image');
         $image->storeAs('public/tulisblogs', $image->hashName());
         $tulisblog = Tulisblog::create([
-            'image' => $image->hashName(),
-            'judul' => $request->judul,
-            'penulis' => $request->penulis,
-            'tanggal' => $request->tanggal,
-            'konten1' => $request->konten1,
-            'konten2' => $request->konten2,
+            'image'             => $image->hashName(),
+            'judul'             => $request->judul,
+            'penulis'           => $request->penulis,
+            'tanggal'           => $request->tanggal,
+            'konten1'           => $request->konten1,
+            'konten2'           => $request->konten2,
         ]);
         $tulisblog = new TulisblogResource(true, 'Data Tulisan Blog Anda Berhasil Ditambahkan!', $tulisblog);
+
         return Redirect::route('tulisblogs.index')->with('tulisblog', $tulisblog);
     }
 
@@ -86,12 +89,12 @@ class TulisblogController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'judul' => 'required|max:100',
-            'penulis' => 'required',
-            'tanggal' => 'required',
-            'konten1' => 'required|max:250',
-            'konten2' => 'required',
+            'image'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'judul'             => 'required|max:80',
+            'penulis'           => 'required',
+            'tanggal'           => 'required',
+            'konten1'           => 'required|max:200',
+            'konten2'           => 'required',
         ]);
 
         $tulisblog = Tulisblog::findOrFail($id);
@@ -102,21 +105,21 @@ class TulisblogController extends Controller
             Storage::delete('public/tulisblogs/' . $tulisblog->image);
 
             $tulisblog->update([
-                'image' => $image->hashName(),
-                'judul' => $request->judul,
-                'penulis' => $request->penulis,
-                'tanggal' => $request->tanggal,
-                'konten1' => $request->konten1,
-                'konten2' => $request->konten2
+                'image'         => $image->hashName(),
+                'judul'         => $request->judul,
+                'penulis'       => $request->penulis,
+                'tanggal'       => $request->tanggal,
+                'konten1'       => $request->konten1,
+                'konten2'       => $request->konten2
             ]);
 
         } else {
             $tulisblog->update([
-                'judul' => $request->judul,
-                'penulis' => $request->penulis,
-                'tanggal' => $request->tanggal,
-                'konten1' => $request->konten1,
-                'konten2' => $request->konten2
+                'judul'         => $request->judul,
+                'penulis'       => $request->penulis,
+                'tanggal'       => $request->tanggal,
+                'konten1'       => $request->konten1,
+                'konten2'       => $request->konten2
             ]);
         }
         return redirect()->route('tulisblogs.index')->with(['success' => 'Data Berhasil Diubah!']);
@@ -144,8 +147,8 @@ class TulisblogController extends Controller
             } else {
                 $tulisblog->increment('like_count');
                 LikeHistory::create([
-                    'user_id' => $user->id,
-                    'blog_id' => $tulisblog->id,
+                    'user_id'       => $user->id,
+                    'blog_id'       => $tulisblog->id,
                 ]);
             }
         }
@@ -156,6 +159,7 @@ class TulisblogController extends Controller
     public function destroy($id): RedirectResponse
     {
         $tulisblog = Tulisblog::findOrFail($id);
+
         Storage::delete('public/tulisblogs/' . basename($tulisblog->image));
         $tulisblog->delete();
         return redirect()->route('tulisblogs.index')->with(['success' => 'Data Berhasil Dihapus!']);

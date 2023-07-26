@@ -3,7 +3,7 @@
     <x-application-logo class="block h-12 w-auto" />
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900">
-        Selamat datang, {{ Auth::user()->name }} di Pustaka 
+        Selamat datang {{ Auth::user()->name }} di Pustaka
     </h1>
     <p class="mt-6 md:text-[15px] text-justify text-gray-500 leading-relaxed">
         Tempat yang tepat untuk menjelajahi dunia tulisan karya ilmiah. Di sini, Anda akan menemukan repositori <br>
@@ -15,7 +15,7 @@
 </div>
 
 <!-- Tampilan Tengah -->
-<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
+<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-10 lg:p-8">
     <div>
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -70,7 +70,7 @@
             </a>
         </p>
     </div>
-    <div>
+    <div class="pb-10">
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -98,7 +98,7 @@
             </a>
         </p>
     </div>
-    <div>
+    <div class="pb-10">
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
@@ -130,8 +130,8 @@
 
 
 <!-- Tampilan Bawah -->
-<div class="p-12 lg:p-8 bg-red-500 border-b border-gray-200">
+<div class="p-15 lg:p-8 bg-red-500 border-b">
     <p class="text-center font-bold md:text-[15px] text-white leading-relaxed">
-        PUSTAKA oleh Bima Maarschal
+    {{ date('Y  -  ') }}PUSTAKA oleh Bima Maarschal
     </p>
 </div>
