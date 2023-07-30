@@ -118,7 +118,7 @@
             dengan akurat dan objektif, memberikan wawasan yang bernilai kepada pembaca.
         </p>
         <p class="mt-4 text-sm">
-            <a href="{{ route('tulisblogs.create') }}" class="inline-flex items-center font-semibold">
+            <a href="{{ route('artikels.create') }}" class="inline-flex items-center font-semibold">
                 Langsung Menulis
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="ml-1 w-5 h-5 ">
                     <path fill-rule="evenodd"

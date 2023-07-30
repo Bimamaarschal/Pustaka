@@ -60,4 +60,5 @@ Route::middleware([
     Route::put('jurnals/belum/hasilreview/{id}', '\App\Http\Controllers\JurnalController@storebelumreview2')->name('jurnals.storebelumreview2');
     Route::get('jurnals/lihatdata/{id}', '\App\Http\Controllers\JurnalController@lihatdata')->name('jurnals.lihatdata');
 
+    Route::resource('/artikels', \App\Http\Controllers\ArtikelController::class);
 });
