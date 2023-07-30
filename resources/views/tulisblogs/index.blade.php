@@ -38,15 +38,14 @@
                         }
                         changeSlideContent();
                         </script>
-
                         <!-- Akhir Text Slide -->
 
                         <!-- Awal Konten -->
-                        <div class="flex flex-wrap -mx-4">
+                        <div class="flex flex-wrap -mx-4 pt-10">
                             @foreach ($tulisblogs as $tulisblog)
                             <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                                <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
-                                    <div class="rounded overflow-hidden mb-8" style="width: 350px; height: 220px;">
+                                <div class="mb-12 group wow fadeInUp" data-wow-delay=".1s">
+                                    <div class="rounded overflow-hidden mb-5" style="width: 350px; height: 220px;">
                                         <a href="{{ route('tulisblogs.show', $tulisblog->id) }}" class="block">
                                             <img src="{{ asset($tulisblog->image) }}" alt="image"
                                                 class="w-full object-cover object-center rounded"
@@ -55,7 +54,7 @@
                                     </div>
                                     <div>
                                         <span
-                                            class="bg-red-600 rounded inline-block text-center py-1 px-4 text-xs leading-loose font-semibold text-white mb-5">
+                                            class="bg-red-600 rounded inline-block text-center py-1 px-4 text-xs leading-loose font-semibold text-white mb-2">
                                             {{ $tulisblog->tanggal }}
                                         </span>
                                         <h3>

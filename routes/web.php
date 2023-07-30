@@ -46,7 +46,7 @@ Route::middleware([
         return view('api');
     })->name('api');
 
-    Route::resource('/tulisblogs', \App\Http\Controllers\Api\TulisblogController::class);
+    Route::resource('/blog/n/tulisblogs', \App\Http\Controllers\Api\TulisblogController::class);
 
     Route::post('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.like');
 

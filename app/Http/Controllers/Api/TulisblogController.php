@@ -35,13 +35,13 @@ class TulisblogController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'image'             => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
-            'judul'             => 'required|max:80|regex:/^[A-Za-z]{1,16}(?:\s+[A-Za-z]{1,16})*$/',
+            'judul'             => 'required|max:80|regex:/^(?:\b[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}\b\s?)+[.\?]?[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}$/',
             'penulis'           => 'required',
             'tanggal'           => 'required',
-            'konten1'           => 'required|max:200',
+            'konten1'           => 'required|max:80|regex:/^(?:\b[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}\b\s?)+[.\?]?[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}$/',
             'konten2'           => 'required',
         ], [
-            'image.required'    => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
+            'image.required'    => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 4048 Kb.',
             'image.image'       => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
             'image.mimes'       => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
             'image.max'         => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
@@ -49,6 +49,7 @@ class TulisblogController extends Controller
             'judul.max'         => 'Judul tidak boleh lebih dari :max karakter.',
             'judul.regex'       => 'Perhatikan penulisan judul Anda',
             'konten1.required'  => 'Kata pendahulu tidak boleh kosong.',
+            'konten1.regex'     => 'Perhatikan penulisan isi kata Anda',
             'konten1.max'       => 'Kata pendahulu tidak boleh lebih dari :max kata.',
             'konten2.required'  => 'Konten tidak boleh kosong.',
         ]);

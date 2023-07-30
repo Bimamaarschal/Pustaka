@@ -156,35 +156,44 @@ class JurnalController extends Controller
 
     public function update(Request $request, string $id)
     {
+
+
+
         $jurnal = Jurnal::findOrFail($id);
         if (!$jurnal) {
             return abort(404);
         }
 
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'judul' => 'required|max:300',
-            'penulis' => 'required',
-            'tanggalterbit' => 'required',
-            'jenis' => 'required',
-            'keterangan' => 'required|max:350',
-            'abstrak' => 'required',
-            'pdf' => 'mimes:pdf|max:2048',
+            'image'                     => 'image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'judul'                     => 'required|max:80|regex:
+                                            /^(?:\b[\w\s()\/\\:\'\
+                                            -?&@#=\+!~%$\_"]{0,15}\b\s?)+
+                                            [.\?]?[\w\s()\/\\:\'\-?&@#=\+
+                                            !~%$\_"]{0,15}$/',
+
+            'penulis'                   => 'required',
+            'tanggalterbit'             => 'required',
+            'jenis'                     => 'required',
+            'keterangan'                => 'required|max:350',
+            'abstrak'                   => 'required',
+            'pdf'                       => 'mimes:pdf|max:5048',
         ], [
-            'image.required' => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
-            'image.image' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.mimes' => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
-            'image.max' => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
-            'judul.required' => 'Judul tidak boleh kosong.',
-            'judul.max' => 'Judul tidak boleh lebih dari :max karakter.',
-            'penulis.required' => 'Nama penulis tidak boleh kosong.',
-            'jenis.required' => 'Jenis jurnal tidak boleh kosong.',
-            'keterangan.required' => 'Kata keterangan tidak boleh kosong.',
-            'keterangan.max' => 'Kata pendahulu tidak boleh lebih dari :max kata.',
-            'abstrak.required' => 'Abstrak tidak boleh kosong.',
-            'pdf.required' => 'File PDF tidak boleh kosong.',
-            'pdf.mimes' => 'Mohon untuk tambahkan pdf dengan format pdf.',
-            'pdf.max' => 'Ukuran pdf tidak boleh lebih dari 2048mb.',
+            'image.required'            => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 4048Kb.',
+            'image.image'               => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.mimes'               => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.max'                 => 'Ukuran gambar tidak boleh lebih dari 4048Kb.',
+            'judul.required'            => 'Judul tidak boleh kosong.',
+            'judul.max'                 => 'Judul tidak boleh lebih dari :max karakter.',
+            'judul.regex'               => 'Perhatikan penulisan judul Anda',
+            'penulis.required'          => 'Nama penulis tidak boleh kosong.',
+            'jenis.required'            => 'Jenis jurnal tidak boleh kosong.',
+            'keterangan.required'       => 'Kata keterangan tidak boleh kosong.',
+            'keterangan.max'            => 'Kata pendahulu tidak boleh lebih dari :max kata.',
+            'abstrak.required'          => 'Abstrak tidak boleh kosong.',
+            'pdf.required'              => 'File PDF tidak boleh kosong.',
+            'pdf.mimes'                 => 'Mohon untuk tambahkan file pdf dengan format (dot)pdf.',
+            'pdf.max'                   => 'Ukuran pdf tidak boleh lebih dari 5048Kb.',
         ]);
 
         if ($request->hasFile('image')) {
