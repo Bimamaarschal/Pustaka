@@ -34,6 +34,7 @@ class Artikel extends Model
         'pembahasan',
         'simpulan',
         'saran',
+        'review',
         'view_count',
         'like_count',
         'like_status',
