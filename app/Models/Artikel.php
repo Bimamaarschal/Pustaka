@@ -18,6 +18,7 @@ class Artikel extends Model
      */
     protected $fillable = [
         'image',
+        'noartikel',
         'judul',
         'penulis',
         'email',
@@ -28,6 +29,11 @@ class Artikel extends Model
         'abstrak',
         'katakunci',
         'latarbelakang',
+        'metode',
+        'hasil',
+        'pembahasan',
+        'simpulan',
+        'saran',
         'view_count',
         'like_count',
         'like_status',
@@ -52,7 +58,7 @@ class Artikel extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => asset('/storage/tulisblogs/' . $image),
+            get: fn ($image) => asset('/storage/artikel/' . $image),
         );
     }
 }
