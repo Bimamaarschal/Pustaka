@@ -33,9 +33,10 @@
                 <label class="text-gray-500 text-sm">Gambar Sampul</label>
                 <div class="col-span-12 mb-2">
                     <span class="sr-only">Pilih gambar sampul anda</span>
-                    <input type="file" name="image" placeholder="Pilih gambar sampul anda" class="block w-full text-sm text-slate-500 file:mr-4 file:py-3.5 file:px-20 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-500 file:text-white" value="{{ old('image') }}"/>@error('image')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                    <input type="file" name="image" placeholder="Pilih gambar sampul anda" class="block w-full text-sm text-slate-500 file:mr-4 file:py-3.5 file:px-20 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-500 file:text-white" value="{{ old('image') }}"/>
+                    @error('image')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -45,14 +46,14 @@
             <input name="konten1" placeholder="Kata pembuka" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('konten1') }}"/>
             <p class="text-gray-500 text-sm" id="charCount2"></p>
             @error('konten1')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
 
         <div class="mb-6">
             <label class="text-gray-500 text-sm">Isi Blog</label>
             <div class="pr-10 pl-10">
-            <textarea name="konten2" placeholder="BLOG TULIS" id="froalaEditor" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" rows="5">{{ old('konten2') }} </textarea>
+                <textarea name="konten2" placeholder="BLOG TULIS" id="froalaEditor" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" rows="5">{{ old('konten2') }} </textarea>
             </div>
         </div>
 
@@ -120,16 +121,13 @@
     <!-- Akhir charCount -->
 
     <script src="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/js/froala_editor.pkgd.min.js"></script>
-        <script>
-    // Tunggu hingga DOM siap
-    document.addEventListener("DOMContentLoaded", function () {
-        // Inisialisasi Froala Editor pada textarea
-        new FroalaEditor("#froalaEditor", {
-        // Opsi kustom dapat ditambahkan di sini
-        toolbarButtons: ['bold', 'italic', 'underline', 'fontSize', 'color', 'align', 'insertImage'],
-        // Tambahkan opsi lain yang Anda butuhkan
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new FroalaEditor("#froalaEditor", {
+            toolbarButtons: ['bold', 'italic', 'underline', 'fontSize', 'color', 'align', 'insertImage'],
+            });
         });
-    });
     </script>
 
 </div>

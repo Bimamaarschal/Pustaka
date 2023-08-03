@@ -21,6 +21,7 @@ class BeritaController extends Controller
     {
         return view('beritas.create');
     }
+
     public function store(Request $request): RedirectResponse
     {
 
@@ -31,7 +32,6 @@ class BeritaController extends Controller
             'tanggal'               => 'required',
             'konten'                => 'required'
         ]);
-
         $image = $request->file('image');
         $image->storeAs('public/beritas', $image->hashName());
 
@@ -67,7 +67,6 @@ class BeritaController extends Controller
     
     public function update(Request $request, $id): RedirectResponse
     {
-
         $this->validate($request, [
             'image'                 => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'judulberita'           => 'required|min:5',
