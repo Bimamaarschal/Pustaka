@@ -95,6 +95,7 @@
                         Kami akan menambahkan data yang kirim ke tampilan PDF artikel berstandar
                     </p>
 
+                    <iframe class="rounded-lg wow w-full h-50" src="{{ asset('storage/pdfartikel/' . $artikel->pdfhasil) }}" height="750"></iframe>
                     <div id="progressContainer" class="relative w-full h-4 rounded bg-gray-300">
                         <div id="progressBar" class="absolute top-0 left-0 h-4 bg-red-500 rounded" style="width: 0%;"></div>
                     </div>

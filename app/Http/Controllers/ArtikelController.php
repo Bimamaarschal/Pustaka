@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Artikel;
-use App\Models\Jurnal;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
+use Dompdf\Dompdf;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -151,5 +152,42 @@ class ArtikelController extends Controller
         return view('artikel.review', ['artikel' => $artikel]);
     }
 
+    public function convertToPDF(Request $request)
+{
+    // Ambil ID dari request
+    $artikelId = $request->input('id');
 
+    // Ambil data artikel dari database berdasarkan ID
+    $artikel = Artikel::find($artikelId);
+
+    // Proses data artikel dan simpan sebagai PDF
+    $dompdf = new Dompdf(); // Ubah sesuai versi dompdf yang Anda gunakan
+    $dompdf->loadHtml(view('artikel.pdf_template', ['artikel' => $artikel]));
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    // Simpan PDF ke storage
+    $pdfFilename = time() . '.pdf';
+    $pdfPath = 'public/pdfartikel/' . $pdfFilename;
+    Storage::put($pdfPath, $dompdf->output());
+
+    // Tambahkan nama PDF ke kolom pdfhasil di tabel Artikel
+    $artikel->pdfhasil = $pdfFilename; // Save only the filename without the directory path
+    $artikel->save();
+
+    // Redirect ke review2 dengan membawa parameter id artikel
+    return redirect()->route('artikels.review2', ['id' => $artikelId]);
+}
+
+public function review2(string $id): View
+{
+    $artikel = Artikel::findOrFail($id);
+
+    if (!$artikel) {
+        return abort(404);
+    }
+
+    // Tampilkan view artikel.review2 dengan membawa data artikel
+    return view('artikel.review2', ['artikel' => $artikel]);
+}
 }

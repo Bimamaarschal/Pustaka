@@ -36,6 +36,7 @@ class Artikel extends Model
         'saran',
         'referensi',
         'review',
+        'pdfhasil',
         'view_count',
         'like_count',
         'like_status',

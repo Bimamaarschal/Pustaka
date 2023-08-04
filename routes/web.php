@@ -62,5 +62,9 @@ Route::middleware([
 
     Route::resource('/artikels', \App\Http\Controllers\ArtikelController::class);
     Route::get('/artikels/review/{id}', '\App\Http\Controllers\ArtikelController@review')->name('artikels.review');
+
+    Route::post('/convert-to-pdf', '\App\Http\Controllers\ArtikelController@convertToPDF')->name('artikels.convert');
+    Route::get('/artikels/review2/{id}', '\App\Http\Controllers\ArtikelController@review2')->name('artikels.review2');
+
     Route::resource('/beritas', \App\Http\Controllers\BeritaController::class);
 });
