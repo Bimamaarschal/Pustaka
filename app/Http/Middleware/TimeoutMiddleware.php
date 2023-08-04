@@ -16,7 +16,7 @@ class TimeoutMiddleware
     $executionTime = time() - $startExecutionTime;
 
     if ($executionTime > $timeout) {
-        View::clearResolvedViews();
+        View::flush();
         return response()->view('errors.500', [], 500);
     }
 

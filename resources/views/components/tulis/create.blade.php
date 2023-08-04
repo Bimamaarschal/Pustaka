@@ -35,8 +35,8 @@
                     <span class="sr-only">Pilih gambar sampul anda</span>
                     <input type="file" name="image" placeholder="Pilih gambar sampul anda" class="block w-full text-sm text-slate-500 file:mr-4 file:py-3.5 file:px-20 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-500 file:text-white" value="{{ old('image') }}"/>
                     @error('image')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                 </div>
             </div>
         </div>
@@ -45,9 +45,11 @@
             <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian awal dari tulisan yang menjadi ringkasan atau teaser.">Kata Pembuka (Teaser)</label>
             <input name="konten1" placeholder="Kata pembuka" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('konten1') }}"/>
             <p class="text-gray-500 text-sm" id="charCount2"></p>
+
             @error('konten1')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
+
         </div>
 
         <div class="mb-6">

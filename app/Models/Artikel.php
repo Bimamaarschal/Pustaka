@@ -17,7 +17,7 @@ class Artikel extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
+        'image',  
         'noartikel',
         'judul',
         'penulis',

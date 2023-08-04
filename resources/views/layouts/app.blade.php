@@ -12,7 +12,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="icon" type="image/x-icon" href="{{ url('image/logo2.png') }}">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/css/froala_editor.pkgd.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('froala/css/froala_editor.pkgd.min.css') }}">
+    <link href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -47,5 +49,9 @@
     @livewireScripts
 </body>
 <script src="{{ url('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ url('froala/js/froala_editor.pkgd.min.js') }}"></script>
+<script type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script>
+
+
 
 </html>
