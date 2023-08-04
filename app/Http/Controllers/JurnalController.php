@@ -157,8 +157,6 @@ class JurnalController extends Controller
     public function update(Request $request, string $id)
     {
 
-
-
         $jurnal = Jurnal::findOrFail($id);
         if (!$jurnal) {
             return abort(404);

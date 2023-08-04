@@ -33,6 +33,7 @@
                         </svg>
                         <span>Dengan mengajukan penyimpanan artikel, Anda menyetujui kebijakan komunitas kami dan bersedia mematuhi kebijakan tersebut.<br> Setelah di review oleh tim kami, Artikel akan dibagikan secara publik.</span>
                     </p>
+
                     <div class="progress mb-3"> <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div> </div>
 
                     <form id="multiStepForm" action="{{ route('artikels.store') }}" method="POST" enctype="multipart/form-data">
@@ -60,23 +61,25 @@
                             </div>
 
                             <div class="grid grid-cols-2 gap-4">
-                                <div >
+                                <div class="mb-6">
                                     <label class="text-gray-500 text-sm mb-5"> Email Penulis Artikel </label>
-                                    <input type="text" placeholder="Email" value="{{ Auth::user()->email }}" class=" w-full pointer-events-none rounded-md border border-[#E9EDF4]  py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" name="tanggal" />
+                                    <input type="text" placeholder="Email" value="{{ Auth::user()->email }}" class=" w-full pointer-events-none rounded-md border border-[#E9EDF4]  py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" name="email" />
                                 </div>
-
+                                @error('email')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                                 <div>
                                     <label class="text-gray-500 text-sm mb-5"> Instansi Penulis Artikel </label>
                                     <input type="text" placeholder="Instansi" class=" w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none  focus:border-red-500 focus:ring-red-500 transition" name="instansi" value="{{ old('instansi') }}" />
                                 </div>
-                                <p class="text-gray-500 text-sm" id="instansi"></p>
-                                @error('instansi')
+                                <p class="text-gray-500 text-sm" id="Instansi"></p>
+                                @error('Instansi')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-10">
                                 <label class="text-gray-500 text-sm "> Kategori Artikel </label>
-                                <select name="jenis" class=" w-full rounded-md  border border-[#E9EDF4] py-3  px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500  transition">
+                                <select name="jenis" value="{{ old('jenis') }}" class=" w-full rounded-md  border border-[#E9EDF4] py-3  px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500  transition">
                                     <option class="text-gray-500 text-sm " value="" disabled selected>Pilih kategori </option>
                                     <option class="text-gray-500 text-sm " value="Teknologi">Teknologi</option>
                                     <option class="text-gray-500 text-sm " value="Bisnis">Bisnis</option>
@@ -125,7 +128,7 @@
 
                             <div class="mb-6">
                                 <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian abstrak dari tulisan artikel anda.">Abstrak</label>
-                                <textarea name="abstrak" id="abstrak" placeholder="Abstrak Artikel" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('abstrak') }}"></textarea>
+                                <textarea name="abstrak" id="abstrak" placeholder="Abstrak Artikel" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" >{{ old('abstrak') }}</textarea>
                                 <p class="text-gray-500 text-sm" id="charCount">
                                 Karakter: <span id="charNum">0</span> / Maksimal: 1600 | Kata: <span id="wordNum">0</span> / Maksimal: 300
                                 </p>
@@ -135,65 +138,90 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-6">
+                            <div class="mb-10">
                                 <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian untuk menambahkan kata kunci dari artikel anda.">Kata Kunci (max:5kata)</label>
                                 <div class="flex items-center">
                                     <input type="text" id="kata-kunci-input" placeholder="Kata Kunci Utama" class="flex-1 rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">
                                     <button type="button" id="tambah-kata-kunci" class="float-right ml-5 bg-red-500 text-white px-6 py-2 rounded">Tambah Kata Kunci</button>
                                 </div>
-                                <input name="katakunci" id="kata-kunci-container" class="w-full pointer-events-none rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition mt-2">
+                                <input name="katakunci" id="kata-kunci-container" class="w-full pointer-events-none rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition mt-2" value="{{ old('katakunci') }}">
                             </div>
-                            
                             <button type="button" class="float-right ml-2 bg-red-500 mb-15 text-white px-6 py-2 rounded next-step" data-step="3">Selanjutnya</button>
                             <button type="button" class="float-right  bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="1">Kembali</button>
-                        
                         </div>
-                        <div class="step" data-step="3">
-                            
-                            <div class="mb-6">
+
+                        <div class="step" data-step="3">  
+                            <div class="pb-10">
                                 <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian latar belakang dari tulisan artikel anda.">Latar Belakang</label>
-                                <textarea name="latarbelakang" id="latarbelakang" placeholder="Latar Belakang Artikel" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('latarbelakang') }}"></textarea>
+                                <textarea name="latarbelakang" id="latarbelakang" placeholder="Latar Belakang Artikel" class="w-full rounded-md border border-[#E9EDF4] h-80 py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" >{{ old('latarbelakang') }}</textarea>
                                 @error('latarbelakang')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <button type="button" class="float-right ml-2 bg-red-500 mb-15 text-white px-6 py-2 rounded next-step" data-step="4">Selanjutnya</button>
+                            <button type="button" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="2">Kembali</button>
+                        </div>
 
-                            <div class="mb-6">
-                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian metoed dari tulisan artikel anda.">Metode</label>
-                                <textarea name="metode" id="metode" placeholder="Metode Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('metode') }}"></textarea>
+                        <div class="step" data-step="4">
+                            <div class="pb-10">
+                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian metode dari tulisan artikel anda.">Metode</label>
+                                <textarea name="metode" id="metode" placeholder="Metode Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">{{ old('metode') }}</textarea>
                                 @error('metode')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <button type="button" class="float-right ml-2 bg-red-500 mb-15 text-white px-6 py-2 rounded next-step" data-step="5">Selanjutnya</button>
+                            <button type="button" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="3">Kembali</button>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="mb-6">
+                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian hasil penelitian dari tulisan artikel anda.">Hasil</label>
+                                <textarea name="hasil" id="hasil" placeholder="Hasil Penelitian Artikel" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">{{ old('hasil') }}</textarea>
+                                @error('hasil')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <div class="mb-6">
-                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian metoed dari tulisan artikel anda.">Metode</label>
-                                <textarea name="metode" id="metode" placeholder="Metode Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('metode') }}"></textarea>
-                                @error('metode')
+                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian pembahasan dari tulisan artikel anda.">Pembahasan</label>
+                                <textarea name="pembahasan" id="pembahasan" placeholder="Pembahasan Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" >{{ old('pembahasan') }}</textarea>
+                                @error('pembahasan')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <button type="button" class="float-right ml-2 bg-red-500 mb-15 text-white px-6 py-2 rounded next-step" data-step="6">Selanjutnya</button>
+                            <button type="button" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="4">Kembali</button>
+                        </div>
+ 
+                        <div class="step" data-step="6">
+                            <div class="mb-6">
+                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian kesimpulan penelitian dari tulisan artikel anda.">Kesimpulan</label>
+                                <textarea name="simpulan" id="simpulan" placeholder="Kesimpulan Artikel" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">{{ old('simpulan') }}</textarea>
+                                @error('simpulan')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <div class="mb-6">
-                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian metoed dari tulisan artikel anda.">Metode</label>
-                                <textarea name="metode" id="metode" placeholder="Metode Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('metode') }}"></textarea>
-                                @error('metode')
+                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian saran dari tulisan artikel anda.">Saran</label>
+                                <textarea name="saran" id="saran" placeholder="Saran" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" >{{ old('saran') }}</textarea>
+                                @error('saran')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
 
-                            <div class="mb-6">
-                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian metoed dari tulisan artikel anda.">Metode</label>
-                                <textarea name="metode" id="metode" placeholder="Metode Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('metode') }}"></textarea>
-                                @error('metode')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <button type="button" class="float-right ml-2 bg-red-500 mb-15 text-white px-6 py-2 rounded next-step" data-step="7">Selanjutnya</button>
+                            <button type="button" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="5">Kembali</button>
+                        </div>
 
+                        <div class="step" data-step="7">
+                            
                             <div class="mb-6">
-                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian metoed dari tulisan artikel anda.">Metode</label>
-                                <textarea name="metode" id="metode" placeholder="Metode Artikel yang digunakan" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" value="{{ old('metode') }}"></textarea>
-                                @error('metode')
+                                <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian referensi dari tulisan artikel anda.">Referensi</label>
+                                <textarea name="referensi" id="referensi" placeholder="Referensi" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">{{ old('referensi') }}</textarea>
+                                @error('referensi')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -212,14 +240,16 @@
                                 </svg>
                                 <span>Mohon cek keabsahan data yang disimpan sebelum pengajuan penyimpanan jurnal</span>
                             </p>
-                            <button type="button" class="btn btn-secondary prev-step" data-step="2">Previous</button>
+
                             <button type="submit" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded">
                                 Kirim Tulisan
                             </button>
+                            <button type="button" class="float-right mr-2 bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="7">Kembali</button>
+
                         </div>
+
                     </form>
                     <!-- Akhir Form -->
-
                 </div>
             </div>
         </div>
@@ -227,6 +257,7 @@
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- Fungsi Data Step -->
     <script>
         $(document).ready(function() {
             var stepTexts = [
@@ -283,7 +314,6 @@
         });
     </script>
 
-
     <!-- Fungsi Genearate ID Acak -->
     <script>
         function generateRandomValue() {
@@ -318,7 +348,6 @@
                     if (kataKunciArray.length > 5) {
                         return;
                     }
-
                     kataKunciContainer.value = newKataKunci;
                     kataKunciInput.value = "";
                 }
@@ -326,54 +355,121 @@
         });
     </script>
 
-<script>
-  const inputField = document.querySelector('[name="abstrak"]');
-  const charNumDisplay = document.getElementById('charNum');
-  const wordNumDisplay = document.getElementById('wordNum');
-  const maxCharacters = 1600;
-  const maxWords = 300;
-
-  function updateCount() {
-    const currentText = inputField.value;
-    const currentLength = currentText.length;
-    charNumDisplay.textContent = currentLength;
-
-    const wordArray = currentText.trim().split(/\s+/);
-    const currentWordCount = wordArray.length;
-    wordNumDisplay.textContent = currentWordCount;
-
-    if (currentLength > maxCharacters) {
-      charNumDisplay.style.color = 'red';
-    } else {
-      charNumDisplay.style.color = 'gray';
-    }
-
-    if (currentWordCount > maxWords) {
-      wordNumDisplay.style.color = 'red';
-    } else {
-      wordNumDisplay.style.color = 'gray';
-    }
-  }
-
-  inputField.addEventListener('input', updateCount);
-  window.addEventListener('load', updateCount);
-</script>
-
-
-
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            new FroalaEditor("#latarbelakang", {
-                toolbarButtons: ['bold', 'italic', 'underline', 'fontSize', 'color', 'align', 'insertImage'],
-            });
+        const inputField = document.querySelector('[name="abstrak"]');
+        const charNumDisplay = document.getElementById('charNum');
+        const wordNumDisplay = document.getElementById('wordNum');
+        const maxCharacters = 1600;
+        const maxWords = 300;
 
-            new FroalaEditor("#metode", {
-                toolbarButtons: ['bold', 'italic', 'underline', 'fontSize', 'color', 'align', 'insertImage'],
-            });
-        });
+        function updateCount() {
+            const currentText = inputField.value;
+            const currentLength = currentText.length;
+            charNumDisplay.textContent = currentLength;
+
+            const wordArray = currentText.trim().split(/\s+/);
+            const currentWordCount = wordArray.length;
+            wordNumDisplay.textContent = currentWordCount;
+
+            if (currentLength > maxCharacters) {
+            charNumDisplay.style.color = 'red';
+            } else {
+            charNumDisplay.style.color = 'gray';
+            }
+
+            if (currentWordCount > maxWords) {
+            wordNumDisplay.style.color = 'red';
+            } else {
+            wordNumDisplay.style.color = 'gray';
+            }
+        }
+
+        inputField.addEventListener('input', updateCount);
+        window.addEventListener('load', updateCount);
     </script>
 
 
 
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new FroalaEditor("#latarbelakang", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 300,
+                                quickInsertEnabled: false,
+                                });
+            new FroalaEditor("#metode", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 300,
+                                quickInsertEnabled: false,
+                                });
+            new FroalaEditor("#hasil", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 250,
+                                quickInsertEnabled: false,
+                                });
+            new FroalaEditor("#pembahasan", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 250,
+                                quickInsertEnabled: false,
+                                });
+            new FroalaEditor("#simpulan", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 250,
+                                quickInsertEnabled: false,
+                                });
+            new FroalaEditor("#saran", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 250,
+                                quickInsertEnabled: false,
+                                });
+            new FroalaEditor("#referensi", {
+                toolbarButtons: [
+                                    'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'color', 'backgroundColor', 'align', 'formatOL', 'formatUL',
+                                    '|',
+                                    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 'quote', 'specialCharacters', 
+                                    '|',
+                                    'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'help',
+                                ],
+                                height: 300,
+                                quickInsertEnabled: false,
+                                });
+        });
+    </script>
 
 </x-app-layout>
