@@ -217,7 +217,6 @@
                         </div>
 
                         <div class="step" data-step="7">
-                            
                             <div class="mb-6">
                                 <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian referensi dari tulisan artikel anda.">Referensi</label>
                                 <textarea name="referensi" id="referensi" placeholder="Referensi" class="w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">{{ old('referensi') }}</textarea>
@@ -241,15 +240,13 @@
                                 <span>Mohon cek keabsahan data yang disimpan sebelum pengajuan penyimpanan jurnal</span>
                             </p>
 
-                            <button type="submit" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded">
-                                Kirim Tulisan
-                            </button>
+                            <button type="submit" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded"> Kirim Tulisan </button>
                             <button type="button" class="float-right mr-2 bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="7">Kembali</button>
-
                         </div>
 
                     </form>
                     <!-- Akhir Form -->
+                    
                 </div>
             </div>
         </div>
