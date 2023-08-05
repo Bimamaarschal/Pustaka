@@ -18,11 +18,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="mb-12 p-6 pb-10 lg:p-8 bg-white ">
-
+                
                     <!-- Judul H1 Awal -->
                     <div class="pb-10" style="display: flex; justify-content: space-between; align-items: center;">
                         <h1 class="text-2xl font-medium text-dark-500" style="flex-grow: 1;">Artikel Baru </h1>
-                        <a href="{{ route('artikels.index')}}" class="bg-red-500 mb-15 text-white px-6 py-2 rounded">Batal</a>
+                        <a href="{{ route('artikels.index')}}" class="border mr-2 border-red-500 rounded text-red-500 px-2 py-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
                     </div>
                     <!-- Judul H1 Akhir -->
 
@@ -72,8 +76,8 @@
                                     <label class="text-gray-500 text-sm mb-5"> Instansi Penulis Artikel </label>
                                     <input type="text" placeholder="Instansi" class=" w-full rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none  focus:border-red-500 focus:ring-red-500 transition" name="instansi" value="{{ old('instansi') }}" />
                                 </div>
-                                <p class="text-gray-500 text-sm" id="Instansi"></p>
-                                @error('Instansi')
+                                <p class="text-gray-500 text-sm" id="instansi"></p>
+                                @error('instansi')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -118,7 +122,7 @@
                                     <label class="text-gray-500 text-sm">Gambar Representasi</label>
                                     <div class="col-span-12 mb-2">
                                         <span class="sr-only">Pilih gambar representasi anda</span>
-                                        <input type="file" name="image" placeholder="Pilih gambar representasi anda" class="block w-full text-sm text-slate-500 file:mr-4 file:py-3.5 file:px-20 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-500 file:text-white" value="{{ old('image') }}"/>
+                                        <input type="file" name="image" placeholder="Pilih gambar representasi anda" class="block w-full  rounded-md border border-[#E9EDF4] text-sm text-slate-500 file:mr-4 file:py-3.5 file:px-20 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-500 file:text-white" value="{{ old('image') }}"/>
                                         @error('image')
                                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                         @enderror
@@ -142,9 +146,13 @@
                                 <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian untuk menambahkan kata kunci dari artikel anda.">Kata Kunci (max:5kata)</label>
                                 <div class="flex items-center">
                                     <input type="text" id="kata-kunci-input" placeholder="Kata Kunci Utama" class="flex-1 rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition">
-                                    <button type="button" id="tambah-kata-kunci" class="float-right ml-5 bg-red-500 text-white px-6 py-2 rounded">Tambah Kata Kunci</button>
+                                    <button type="button" id="tambah-kata-kunci" class="float-right ml-2 bg-red-500 text-white px-3 py-3 rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
                                 </div>
-                                <input name="katakunci" id="kata-kunci-container" class="w-full pointer-events-none rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition mt-2" value="{{ old('katakunci') }}">
+                                <input name="katakunci" id="kata-kunci-container" class="w-full pointer-events-none rounded-md border border-[#E9EDF4] py-3 px-3 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition mt-2" value="{{ old('katakunci') }}">
                             </div>
                             <button type="button" class="float-right ml-2 bg-red-500 mb-15 text-white px-6 py-2 rounded next-step" data-step="3">Selanjutnya</button>
                             <button type="button" class="float-right  bg-red-500 mb-15 text-white px-6 py-2 rounded prev-step" data-step="1">Kembali</button>
@@ -229,7 +237,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
                                 </svg>
-                                <span>Hak Cipta dilindungi oleh PUSTAKA sebagai penyedia penyimpanan, kami tidak bertanggung jawab atas isi jurnal yang disimpan.</span>
+                                <span>Hak Cipta dilindungi oleh PUSTAKA sebagai penyedia penyimpanan, kami tidak bertanggung jawab atas isi artikel yang disimpan.</span>
                             </p>
 
                             <p class="flex pb-3 items-center space-x-2 text-sm text-gray-500">
@@ -237,7 +245,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span>Mohon cek keabsahan data yang disimpan sebelum pengajuan penyimpanan jurnal</span>
+                                <span>Mohon cek keabsahan data yang disimpan sebelum pengajuan penyimpanan artikel</span>
                             </p>
 
                             <button type="submit" class="float-right bg-red-500 mb-15 text-white px-6 py-2 rounded"> Kirim Tulisan </button>

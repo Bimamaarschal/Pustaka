@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 class Artikel extends Model
 {
     use HasFactory;
-// Belum di selesaikan
-    
-     /**
-     * fillable
-     *
-     * @var array
-     */
+    protected $primaryKey = 'id'; 
+    public $incrementing = false; 
+    protected $keyType = 'string'; 
     protected $fillable = [
+        'id',
         'image',  
         'noartikel',
         'judul',
         'penulis',
         'email',
-        'intansi',
+        'instansi',
         'tanggal',
         'jenis',
         'kataketerangan',
@@ -37,10 +35,12 @@ class Artikel extends Model
         'referensi',
         'review',
         'pdfhasil',
+        'pesan',
+        'komentar',
+        'hukum',
         'view_count',
         'like_count',
-        'like_status',
-        
+        'like_status', 
     ];
 
     public function hasLiked($userId)

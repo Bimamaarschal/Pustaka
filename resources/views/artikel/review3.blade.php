@@ -74,7 +74,7 @@
                         <div id="progressBar" class="absolute top-0 left-0 h-4 bg-red-500 rounded" style="width: 0%;"></div>
                     </div>
                     
-                    <form method="POST" action="{{ route('artikels.convert') }}">
+                    <form method="POST" action="{{ route('artikels.convert2') }}">
                         @csrf
                         <input type="hidden" name="id" value="{{ $artikel->id }}">
                         <div id="buttonContainer" class="hidden mt-4">

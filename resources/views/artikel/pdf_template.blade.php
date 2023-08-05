@@ -88,39 +88,39 @@
             <div class="section-grid left-column">
                 <div class="article-section">
                     <div class="section-title">Latar Belakang</div>
-                    <div class="section-content">{{ $artikel->latarbelakang }}</div>
+                    <div class="section-content">{!! $artikel->latarbelakang !!}</div>
                 </div>
 
                 <div class="article-section">
                     <div class="section-title">Metode</div>
-                    <div class="section-content">{{ $artikel->metode }}</div>
+                    <div class="section-content">{!! $artikel->metode !!}</div>
                 </div>
 
                 <div class="article-section">
                     <div class="section-title">Hasil</div>
-                    <div class="section-content">{{ $artikel->hasil }}</div>
+                    <div class="section-content">{!! $artikel->hasil !!}</div>
                 </div>
             </div>
 
             <div class="section-grid right-column">
                 <div class="article-section">
                     <div class="section-title">Pembahasan</div>
-                    <div class="section-content">{{ $artikel->pembahasan }}</div>
+                    <div class="section-content">{!! $artikel->pembahasan !!}</div>
                 </div>
 
                 <div class="article-section">
                     <div class="section-title">Simpulan</div>
-                    <div class="section-content">{{ $artikel->simpulan }}</div>
+                    <div class="section-content">{!! $artikel->simpulan !!}</div>
                 </div>
 
                 <div class="article-section">
                     <div class="section-title">Saran</div>
-                    <div class="section-content">{{ $artikel->saran }}</div>
+                    <div class="section-content">{!! $artikel->saran !!}</div>
                 </div>
 
                 <div class="article-section">
                     <div class="section-title">Referensi</div>
-                    <div class="section-content">{{ $artikel->referensi }}</div>
+                    <div class="section-content">{!! $artikel->referensi !!}</div>
                 </div>
             </div>
         </div>

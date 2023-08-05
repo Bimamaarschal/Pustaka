@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artikels', function (Blueprint $table) {
-            $table->id();
+            $table->string('id', 121)->primary();
             $table->string('image');
             $table->string('noartikel');
             $table->string('judul');
             $table->string('penulis');
             $table->string('email');
-            $table->string('intansi');
+            $table->string('instansi');
             $table->string('tanggal');
             $table->string('jenis');
             $table->string('kataketerangan');
@@ -30,7 +30,12 @@ return new class extends Migration
             $table->text('pembahasan');
             $table->text('simpulan');
             $table->text('saran');
+            $table->text('referensi')->nullable();
             $table->string('review');
+            $table->string('pdfhasil')->nullable();
+            $table->string('pesan')->nullable();
+            $table->string('komentar')->nullable();
+            $table->string('hukum')->nullable();
             $table->unsignedInteger('view_count')->default(0);
             $table->unsignedInteger('like_count')->default(0);
             $table->boolean('like_status')->default(false);

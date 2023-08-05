@@ -8,6 +8,7 @@ use App\Models\Artikel;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use Dompdf\Dompdf;
+use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -112,8 +113,9 @@ class ArtikelController extends Controller
 
         $image = $request->file('image');
         $image->storeAs('public/artikel', $image->hashName());
-
+        $id = Str::random(121);
         $newPost = Artikel::create([
+            'id'                        => $id,
             'image'                     => $image->hashName(),
             'noartikel'                 => $request->noartikel,
             'judul'                     => $request->judul,
@@ -138,8 +140,9 @@ class ArtikelController extends Controller
         if (!$newPost) {
             return abort(404);
         }
+        $savedId = $newPost->id;
 
-        return redirect()->route('artikels.review', ['id' => $newPost->id])->with('success', 'Data Artikel Anda');
+        return redirect()->route('artikels.review', ['id' => $savedId])->with('success', 'Data Artikel Anda');
     }
 
     public function review(string $id): View
@@ -153,41 +156,216 @@ class ArtikelController extends Controller
     }
 
     public function convertToPDF(Request $request)
-{
-    // Ambil ID dari request
-    $artikelId = $request->input('id');
+    {
+        $artikelId          = $request->input('id');
+        $artikel            = Artikel::find($artikelId);
+        $dompdf             = new Dompdf();
 
-    // Ambil data artikel dari database berdasarkan ID
-    $artikel = Artikel::find($artikelId);
+        $dompdf             ->  loadHtml(view('artikel.pdf_template', ['artikel' => $artikel]));
+        $dompdf             ->  setPaper('A4', 'portrait');
+        $dompdf             ->   render();
 
-    // Proses data artikel dan simpan sebagai PDF
-    $dompdf = new Dompdf(); // Ubah sesuai versi dompdf yang Anda gunakan
-    $dompdf->loadHtml(view('artikel.pdf_template', ['artikel' => $artikel]));
-    $dompdf->setPaper('A4', 'portrait');
-    $dompdf->render();
+        $pdfFilename        = time() . '.pdf';
+        $pdfPath            = 'public/pdfartikel/' . $pdfFilename;
+        Storage::put($pdfPath, $dompdf->output());
 
-    // Simpan PDF ke storage
-    $pdfFilename = time() . '.pdf';
-    $pdfPath = 'public/pdfartikel/' . $pdfFilename;
-    Storage::put($pdfPath, $dompdf->output());
+        $artikel            ->  pdfhasil  = $pdfFilename;
+        $artikel            -> save();
 
-    // Tambahkan nama PDF ke kolom pdfhasil di tabel Artikel
-    $artikel->pdfhasil = $pdfFilename; // Save only the filename without the directory path
-    $artikel->save();
-
-    // Redirect ke review2 dengan membawa parameter id artikel
-    return redirect()->route('artikels.review2', ['id' => $artikelId]);
-}
-
-public function review2(string $id): View
-{
-    $artikel = Artikel::findOrFail($id);
-
-    if (!$artikel) {
-        return abort(404);
+        return redirect()->route('artikels.review2', ['id' => $artikelId]);
     }
 
-    // Tampilkan view artikel.review2 dengan membawa data artikel
-    return view('artikel.review2', ['artikel' => $artikel]);
-}
+    public function convertToPDF2(Request $request)
+    {
+        $artikelId = $request->input('id');
+        $artikel = Artikel::find($artikelId);
+
+        if (!$artikel) {
+            return abort(404);
+        }
+
+        if ($artikel->pdfhasil) {
+            Storage::delete('public/pdfartikel/' . $artikel->pdfhasil);
+        }
+
+        $dompdf = new Dompdf();
+
+        $dompdf->loadHtml(view('artikel.pdf_template', ['artikel' => $artikel]));
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $pdfFilename = time() . '.pdf';
+        $pdfPath = 'public/pdfartikel/' . $pdfFilename;
+        Storage::put($pdfPath, $dompdf->output());
+
+        $artikel->pdfhasil = $pdfFilename;
+        $artikel->save();
+
+        return redirect()->route('artikels.review2', ['id' => $artikelId]);
+    }
+
+    public function edit(string $id): View
+    {
+        $artikel = Artikel::findOrFail($id);
+        
+        if (!$artikel) {
+            return abort(404);
+        }
+
+        return view('artikel.edit', ['artikel' => $artikel]);
+    }
+
+    public function review2(string $id): View
+    {
+        $artikel = Artikel::findOrFail($id);
+
+        if (!$artikel) {
+            return abort(404);
+        }
+
+        return view('artikel.review2', ['artikel' => $artikel]);
+    }
+
+    public function review3(string $id): View
+    {
+        $artikel = Artikel::findOrFail($id);
+
+        if (!$artikel) {
+            return abort(404);
+        }
+
+        return view('artikel.review3', ['artikel' => $artikel]);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $artikel = Artikel::findOrFail($id);
+        if (!$artikel) {
+            return abort(404);
+        }
+
+        $this->validate($request, [
+            'image'                      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'noartikel'                  => 'required',
+            'judul'                      => 'required|max:80|regex:/^(?:\b[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}\b\s?)+[.\?]?[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}$/',
+            'penulis'                    => 'required',
+            'email'                      => 'required',
+            'instansi'                   => 'required|max:200|regex:/^(?:\b[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}\b\s?)+[.\?]?[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}$/',
+            'tanggal'                    => 'required',
+            'jenis'                      => 'required',
+            'kataketerangan'             => 'required|max:200|regex:/^(?:\b[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}\b\s?)+[.\?]?[\w\s()\/\\:\'\-?&@#=\+!~%$\_"]{0,15}$/',
+            'abstrak'                    => 'required|max:1600',
+            'katakunci'                  => 'required|max:200',
+            'latarbelakang'              => 'required',
+            'metode'                     => 'required',
+            'hasil'                      => 'required',
+            'pembahasan'                 => 'required',
+            'simpulan'                   => 'required',
+            'saran'                      => 'required',
+            'referensi'                  => 'required',
+        ], [
+            'image.required'             => 'Mohon untuk tambahkan gambar format jpeg, png, jpg, gif, svg, maksimal 2048mb.',
+            'image.image'                => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.mimes'                => 'Mohon untuk tambahkan gambar dengan format jpeg, png, jpg, gif, svg.',
+            'image.max'                  => 'Ukuran gambar tidak boleh lebih dari 2048mb.',
+
+            'noartikel.required'         => 'No artikel tidak boleh kosong.',
+
+            'judul.required'             => 'Judul tidak boleh kosong.',
+            'judul.max'                  => 'Judul tidak boleh lebih dari :max karakter.',
+            'judul.regex'                => 'Perhatikan penulisan judul Anda',
+
+            'penulis.required'           => 'Nama penulis tidak boleh kosong, pastikan data pada profil sudah benar.',
+
+            'email.required'             => 'Nama penulis tidak boleh kosong, pastikan data pada profil sudah benar.',
+            
+            'instansi.required'          => 'Instansi tidak boleh kosong.',
+            'instansi.max'               => 'Instansi tidak boleh lebih dari :max karakter.',
+            'instansi.regex'             => 'Perhatikan penulisan data instansi Anda',
+
+            'tanggal.required'           => 'Tanggal penulisan tidak boleh kosong, pastikan data sudah benar.',
+
+            'jenis.required'             => 'Jenis jurnal tidak boleh kosong.',
+
+            'kataketerangan.required'    => 'Kata keterangan tidak boleh kosong.',
+            'kataketerangan.max'         => 'Kata keterangan tidak boleh lebih dari :max karakter.',
+            'kataketerangan.regex'       => 'Perhatikan penulisan kata keterangan Anda',
+
+            'abstrak.required'           => 'Kata abstrak tidak boleh kosong.',
+            'abstrak.max'                => 'Kata abstrak tidak boleh lebih dari :max karakter.',
+
+            'katakunci.required'         => 'Kata kunci abstrak tidak boleh kosong.',
+            'katakunci.max'              => 'Kata kunci abstrak tidak boleh lebih dari :max karakter.',
+
+            'latarbelakang.required'     => 'Latar belakang tidak boleh kosong.',
+
+            'metode.required'            => 'Metode tidak boleh kosong.',
+
+            'hasil.required'             => 'Hasil tidak boleh kosong.',
+
+            'pembahasan.required'        => 'Pembahasan tidak boleh kosong.',
+
+            'simpulan.required'          => 'Simpulan tidak boleh kosong.',
+
+            'saran.required'             => 'Saran tidak boleh kosong.',
+
+            'referensi.required'         => 'Referensi tidak boleh kosong.',
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $image = $request->file('image');
+
+            $image->storeAs('public/artikel/', $image->hashName());
+            Storage::delete('public/artikel/' . $artikel->image);
+
+            $artikel ->image = $image->hashName();
+        }
+
+        if ($request->hasFile('pdfhasil')) {
+            $pdfhasil = $request->file('pdfhasil');
+            $pdfhasil->storeAs('public/pdfartikel/', $pdfhasil->hashName());
+
+            if ($artikel->pdfhasil) {
+                Storage::delete('public/pdfartikel/' . $artikel->pdfhasil);
+            }
+
+            $artikel ->pdfhasil = $pdfhasil->hashName();
+        }
+
+        $artikel            ->noartikel         = $request->input('noartikel');
+        $artikel            ->judul             = $request->input('judul');
+        $artikel            ->penulis           = $request->input('penulis');
+        $artikel            ->email             = $request->input('email');
+        $artikel            ->instansi          = $request->input('instansi');
+        $artikel            ->tanggal           = $request->input('tanggal');
+        $artikel            ->jenis             = $request->input('jenis');
+        $artikel            ->kataketerangan    = $request->input('kataketerangan');
+        $artikel            ->abstrak           = $request->input('abstrak');
+        $artikel            ->katakunci         = $request->input('katakunci');
+        $artikel            ->latarbelakang     = $request->input('latarbelakang');
+        $artikel            ->metode            = $request->input('metode');
+        $artikel            ->hasil             = $request->input('hasil');
+        $artikel            ->pembahasan        = $request->input('pembahasan');
+        $artikel            ->simpulan          = $request->input('simpulan');
+        $artikel            ->saran             = $request->input('saran');
+        $artikel            ->referensi         = $request->input('referensi');
+
+        $artikel->save();
+
+        return redirect()->route('artikels.review3', ['id' => $artikel->id])->with('success', 'Jurnal berhasil diupdate');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        $artikel        = Artikel::findOrFail($id);
+
+        Storage::delete('public/jurnal/' . basename($artikel->image));
+        Storage::delete('public/pdfartikel/' . basename($artikel->pdfhasil));
+            
+        $artikel        ->  delete();
+
+        return redirect()->route('artikels.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
 }

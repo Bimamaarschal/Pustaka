@@ -64,7 +64,9 @@ Route::middleware([
     Route::get('/artikels/review/{id}', '\App\Http\Controllers\ArtikelController@review')->name('artikels.review');
 
     Route::post('/convert-to-pdf', '\App\Http\Controllers\ArtikelController@convertToPDF')->name('artikels.convert');
-    Route::get('/artikels/review2/{id}', '\App\Http\Controllers\ArtikelController@review2')->name('artikels.review2');
+    Route::post('/convert-to-pdf/2/', '\App\Http\Controllers\ArtikelController@convertToPDF2')->name('artikels.convert2');
+    Route::get('/artikels/review/2/{id}', '\App\Http\Controllers\ArtikelController@review2')->name('artikels.review2');
+    Route::get('/artikels/review/3/{id}', '\App\Http\Controllers\ArtikelController@review3')->name('artikels.review3');
 
     Route::resource('/beritas', \App\Http\Controllers\BeritaController::class);
 });
