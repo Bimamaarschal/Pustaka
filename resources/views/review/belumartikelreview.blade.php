@@ -65,24 +65,8 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 mb-12 lg:p-8 bg-white">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h1 class="text-2xl font-semibold font-medium text-dark-500" style="flex-grow: 1;">Artikel Anda</h1>
+                        <h1 class="text-2xl font-semibold font-medium text-dark-500" style="flex-grow: 1;">Review Artikel</h1>
 
-                        <a href="{{ route('artikels.edit', $artikel->id)}}" class="border mr-2 border-red-500 rounded text-red-500 px-2 py-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
-                                <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
-                            </svg>
-                        </a>
-                        <form action="{{ route('artikels.destroy', $artikel->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus artikel Anda? data tidak bisa di kembalikan');">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="border border-red-500 rounded text-red-500 px-2 py-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                    <path fill-rule="evenodd"
-                                        d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </form>
                         <span class="inline-block text-center py-2 px-2 text-xs leading-loose font-semibold ml-2
                                     @if ($artikel->review === 'Belum di review')
                                         bg-red-500 text-white
@@ -111,17 +95,109 @@
 
                     </div>
                     <p class=" mb-10 text-gray-500 leading-relaxed">
-                        Kami telah menambahkan data dan menampilkan ke dalam bentuk PDF
+                        Berikut adalah artikel yang masih berstatus belum di review, kesalahan, peroses lebih lanjut. Selamat Mereview.
                     </p>
-                    <div class="m-10">
-                        <iframe class=" rounded-2xl wow w-full h-50" src="{{ asset('storage/pdfartikel/' . $artikel->pdfhasil) }}" height="600"></iframe>
+
+                    <div class="container grid md:grid-cols-2 gap-4">
+                        <!-- Grid 1 - iframe -->
+                        <div class=" rounded-lg fadeInUp flex items-center" >
+                            <iframe class=" rounded-2xl wow w-full " src="{{ asset('storage/pdfartikel/' . $artikel->pdfhasil) }}" height="750"></iframe>
+                        </div>
+                        <!-- Grid 2 - teks -->
+                        <form action="{{ route('timreview.artikels.store', ['id' => $artikel->id]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                            <div class="flex flex-col justify-between">
+                                <div class="pb-10">
+                                    <h2 class="text-xl mb-4">Form Hasil Review</h2>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="mb-6">
+                                            <label class="text-gray-500 text-sm mb-5"> Nama Review </label>
+                                            <input type="text" placeholder="Review" value="{{ Auth::user()->name }}" class=" w-full pointer-events-none rounded-md border border-[#E9EDF4]  py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500 transition" name="nama_review" />
+                                        </div>
+
+                                        <div>
+                                            <label class="text-gray-500 text-sm mb-5"> Tanggal Review </label>
+                                            <input type="text" placeholder="Tanggal" value="{{ \Carbon\Carbon::now()->format('d / M / Y') }}" class=" w-full pointer-events-none rounded-md border border-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none  focus:border-red-500 focus:ring-red-500 transition" name="tanggal_review" onfocus="(this.type='date')" onblur="(this.type='text')" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label class="text-gray-500 text-sm "> Hasil Review</label>
+                                        <select name="review" value="{{ $artikel->review }}" class=" w-full rounded-md  border border-[#E9EDF4] py-3  px-5 bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-red-500 focus:ring-red-500  transition">
+                                            <option class="text-gray-500 text-sm " value="" disabled >Pilih kategori Hasil Review </option>
+                                            <option class="text-gray-500 text-sm " value="Belum di review">Belum di review</option>
+                                            <option class="text-gray-500 text-sm " value="Artikel telah di review">Artikel telah di review</option>
+                                            <option class="text-gray-500 text-sm " value="Artikel terdapat kesalahan">Artikel terdapat kesalahan</option>
+                                            <option class="text-gray-500 text-sm " value="Artikel proses lebih lanjut">Artikel proses lebih lanjut</option>
+                                        </select>
+                                        @error('review')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label class="text-gray-500 text-sm" title="Keterangan: Ini adalah bagian keterangan hasil review artikel.">Keterangan Hasil Review</label>
+                                        <textarea name="keterangan_review" id="keterangan_review" placeholder="Keterangan Hasil Review" class="w-full h-80 rounded-md border border-[#E9EDF4] bg-[#FCFDFE] text-base text-gray-600 placeholder-[#ACB6BE] outline-none focus-visible:shadow-none  focus:border-red-500 focus:ring-red-500 transition" >{{ $artikel->keterangan_review }}</textarea>
+                                        <p class="text-gray-500 text-sm" id="charCount">
+                                        Karakter: <span id="charNum">0</span> / Maksimal: 800 | Kata: <span id="wordNum">0</span> / Maksimal: 150
+                                        </p>
+
+                                        @error('keterangan_review')
+                                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                </div>  
+                            </div>
+                            <p class="flex pb-3 items-center space-x-2 text-sm text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>Mohon cek sebelum hasil review di kirimkan, jika review dinyatakan Publish artikel akan bersifat publik, terima kasih atas kerja sama ini.</span>
+                            </p>
+                            <button type="submit" class="float-right bg-red-500 text-white px-6 py-2 rounded"> Kirim Review</button>
+                        </form>
                     </div>
-                    <a href="{{ route('artikels.kirimartikel', $artikel->id)}}" class=" next-step float-right bg-red-500 m-10  text-white px-6 py-2 rounded"> Kirim Artikel</a>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <script>
+        const inputField = document.querySelector('[name="keterangan_review"]');
+        const charNumDisplay = document.getElementById('charNum');
+        const wordNumDisplay = document.getElementById('wordNum');
+        const maxCharacters = 800;
+        const maxWords = 150;
+
+        function updateCount() {
+            const currentText = inputField.value;
+            const currentLength = currentText.length;
+            charNumDisplay.textContent = currentLength;
+
+            const wordArray = currentText.trim().split(/\s+/);
+            const currentWordCount = wordArray.length;
+            wordNumDisplay.textContent = currentWordCount;
+
+            if (currentLength > maxCharacters) {
+            charNumDisplay.style.color = 'red';
+            } else {
+            charNumDisplay.style.color = 'gray';
+            }
+
+            if (currentWordCount > maxWords) {
+            wordNumDisplay.style.color = 'red';
+            } else {
+            wordNumDisplay.style.color = 'gray';
+            }
+        }
+
+        inputField.addEventListener('input', updateCount);
+        window.addEventListener('load', updateCount);
+    </script>
     <!-- Akhir Konversi -->
 
 </x-app-layout>

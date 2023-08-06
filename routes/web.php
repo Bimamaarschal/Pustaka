@@ -61,5 +61,6 @@ Route::middleware([
     Route::get('tim/review', '\App\Http\Controllers\ReviewController@timreview')->name('timreview');
     Route::get('tim/review/artikel', '\App\Http\Controllers\ReviewController@timreviewArtikel')->name('timreview.artikels');
     Route::get('tim/review/artikel/{id}', '\App\Http\Controllers\ReviewController@timreviewArtikelReview')->name('timreview.artikels.review');
+    Route::put('tim/simpanreview/artikel/{id}', '\App\Http\Controllers\ReviewController@timreviewArtikelStore')->name('timreview.artikels.store');
 
 });
