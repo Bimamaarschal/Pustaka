@@ -68,21 +68,19 @@
                             <div class="w-60">
                                 <!-- Pilihan "Review" jika pengguna memiliki status "viewer" -->
                                 @if (Auth::user()->status_tim_viewer)
-                                <!-- Ganti "status_viewer" sesuai dengan atribut status viewer di tabel Users -->
-                                <div class="border-t border-gray-200"></div>
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Review Dokumen') }}
                                 </div>
 
-                                <!-- Tambahkan link atau konten lain untuk pilihan "Review" -->
-                                <!-- Misalnya, jika Anda ingin menambahkan link review -->
-                                <x-dropdown-link href="{{ route('jurnals.timreview') }}">
+                                <x-dropdown-link href="{{ route('timreview') }}">
                                     {{ __('Review') }}
                                 </x-dropdown-link>
 
                                 @endif
                                 <!-- Team Management -->
+                                <div class="border-t border-gray-200"></div>
+
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Tim') }}
                                 </div>

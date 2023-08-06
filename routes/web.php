@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -47,9 +36,7 @@ Route::middleware([
     })->name('api');
 
     Route::resource('/blog/n/tulisblogs', \App\Http\Controllers\Api\TulisblogController::class);
-
     Route::post('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.like');
-
     Route::delete('/blog/{id}/like', '\App\Http\Controllers\Api\TulisblogController@like')->name('blog.unlike');
 
     Route::resource('/jurnals', \App\Http\Controllers\JurnalController::class);
@@ -62,11 +49,17 @@ Route::middleware([
 
     Route::resource('/artikels', \App\Http\Controllers\ArtikelController::class);
     Route::get('/artikels/review/{id}', '\App\Http\Controllers\ArtikelController@review')->name('artikels.review');
-
-    Route::post('/convert-to-pdf', '\App\Http\Controllers\ArtikelController@convertToPDF')->name('artikels.convert');
-    Route::post('/convert-to-pdf/2/', '\App\Http\Controllers\ArtikelController@convertToPDF2')->name('artikels.convert2');
     Route::get('/artikels/review/2/{id}', '\App\Http\Controllers\ArtikelController@review2')->name('artikels.review2');
     Route::get('/artikels/review/3/{id}', '\App\Http\Controllers\ArtikelController@review3')->name('artikels.review3');
+    Route::post('/convert-to-pdf', '\App\Http\Controllers\ArtikelController@convertToPDF')->name('artikels.convert');
+    Route::post('/convert-to-pdf/2/', '\App\Http\Controllers\ArtikelController@convertToPDF2')->name('artikels.convert2');
+    Route::get('/kirimartikel/{id}', '\App\Http\Controllers\ArtikelController@kirimartikel')->name('artikels.kirimartikel');
 
     Route::resource('/beritas', \App\Http\Controllers\BeritaController::class);
+
+    // Tim Review
+    Route::get('tim/review', '\App\Http\Controllers\ReviewController@timreview')->name('timreview');
+    Route::get('tim/review/artikel', '\App\Http\Controllers\ReviewController@timreviewArtikel')->name('timreview.artikels');
+    Route::get('tim/review/artikel/{id}', '\App\Http\Controllers\ReviewController@timreviewArtikelReview')->name('timreview.artikels.review');
+
 });

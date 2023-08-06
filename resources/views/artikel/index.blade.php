@@ -378,6 +378,31 @@
                     </div>
                 </div>
                 <!-- ====== Blog Section End -->
+
+                @if(session('success'))
+                <div id="notification" class="fixed top-10 right-10 z-50 w-100 p-4 bg-white shadow-md rounded-lg">
+                    <div class="flex justify-between">
+                        <p class="font-semibold">{{ session('success') }}</p>
+                        <button id="close-notification" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                            <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 10.586l-3.293-3.293a1 1 0 1 0-1.414 1.414L10.586 12l-3.293 3.293a1 1 0 1 0 1.414 1.414L12 13.414l3.293 3.293a1 1 0 0 0 1.414-1.414L13.414 12l3.293-3.293a1 1 0 0 0-1.414-1.414L12 10.586z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                @endif
+
+                <script>
+                    function showNotification(message) {
+                        document.getElementById('notification-message').innerText = message;
+                        document.getElementById('notification').classList.remove('hidden');
+                    }
+                    function hideNotification() {
+                        document.getElementById('notification').classList.add('hidden');
+                    }
+                    document.getElementById('close-notification').addEventListener('click', hideNotification);
+                </script>
+                
             </div>
         </div>
     </div>

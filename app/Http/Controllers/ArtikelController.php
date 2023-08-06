@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use App\Models\Artikel;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
+use App\Models\Artikel;
 use Dompdf\Dompdf;
-use Illuminate\Support\Str;
-
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class ArtikelController extends Controller
 {
-    /**
-     * index
-     *
-     * @return View
-     */
     public function index(): View
     {
         $itemsPerPage = 6;
@@ -29,7 +22,7 @@ class ArtikelController extends Controller
             ->latest()
             ->paginate($itemsPerPage);
 
-        return view('artikel.index', compact('artikels'));
+        return view ('artikel.index', compact('artikels'));
     }
 
     public function create(): View
@@ -141,7 +134,6 @@ class ArtikelController extends Controller
             return abort(404);
         }
         $savedId = $newPost->id;
-
         return redirect()->route('artikels.review', ['id' => $savedId])->with('success', 'Data Artikel Anda');
     }
 
@@ -163,7 +155,7 @@ class ArtikelController extends Controller
 
         $dompdf             ->  loadHtml(view('artikel.pdf_template', ['artikel' => $artikel]));
         $dompdf             ->  setPaper('A4', 'portrait');
-        $dompdf             ->   render();
+        $dompdf             ->  render();
 
         $pdfFilename        = time() . '.pdf';
         $pdfPath            = 'public/pdfartikel/' . $pdfFilename;
@@ -355,6 +347,21 @@ class ArtikelController extends Controller
 
         return redirect()->route('artikels.review3', ['id' => $artikel->id])->with('success', 'Jurnal berhasil diupdate');
     }
+
+    public function kirimartikel(string $id)
+    {
+
+        $artikel = Artikel::findOrFail($id);
+
+        if (!$artikel) {
+            return redirect()->back()->with(['error' => "Artikel dengan ID $id tidak ditemukan"]);
+        }
+
+        $judulArtikel = $artikel->noartikel;
+
+        return redirect()->route('artikels.index')->with(['success' => "Artikel '$judulArtikel' berhasil di kirim tunggu proses 2x24 untuk di review"]);
+    }   
+
 
     public function destroy($id): RedirectResponse
     {

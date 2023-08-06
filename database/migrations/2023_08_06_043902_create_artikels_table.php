@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('artikels', function (Blueprint $table) {
@@ -32,6 +30,10 @@ return new class extends Migration
             $table->text('saran');
             $table->text('referensi')->nullable();
             $table->string('review');
+            $table->string('keterangan_review')->nullable();
+            $table->string('tanggal_review')->nullable();
+            $table->string('nama_review')->nullable();
+            $table->string('poin_review')->nullable();
             $table->string('pdfhasil')->nullable();
             $table->string('pesan')->nullable();
             $table->string('komentar')->nullable();
@@ -43,9 +45,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('artikels');
